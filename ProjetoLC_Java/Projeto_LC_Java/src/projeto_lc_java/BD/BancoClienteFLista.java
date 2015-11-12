@@ -59,7 +59,9 @@ public class BancoClienteFLista {
     
     public void excluirLista(String cpf){
         BancoClienteFLista aux;
-        if(consultarLista(cpf).equals(this.proximo.cliente.getCpf())){
+        if(this.cliente.equals(consultarLista(cpf))){
+            
+            
             aux = this.proximo.getLista();
             
         }
