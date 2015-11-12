@@ -65,9 +65,9 @@ public class BancoClienteFisico {
         return aux;
     }
     
-    public void atualizarCliente(ClienteFisico cliente){
+    public void atualizarCliente(String cpf, ClienteFisico cliente){
         for(int i=0; i<this.indice;i++){
-            if(this.clientes[i].getCpf().equals(cliente.getCpf())){
+            if(this.clientes[i].getCpf().equals(cpf)){
                 this.clientes[i] = cliente;
             }
         }
