@@ -2,7 +2,9 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
+ */     
+
+
 
 package projeto_lc_java.BD;
 
@@ -43,21 +45,21 @@ public class BancoClienteFLista {
         this.proximo.setLista(proximo.getLista());
     }
     
-    public BancoClienteFLista consultarLista(BancoClienteFLista lista){
+    public ClienteFisico consultarLista(String cpf){
         BancoClienteFLista aux;
-        if(this.cliente.equals(lista.getCliente())){
-            return lista;
+        if(this.cliente.getCpf().equals(cpf)){
+            return this.cliente;
         }else{
             aux = this.proximo;
-            consultarLista(aux);
+            consultarLista(aux.cliente.getCpf());
         }
         
         return null;
     }
     
-    public void excluirLista(BancoClienteFLista proximo){
+    public void excluirLista(String cpf){
         BancoClienteFLista aux;
-        if(consultarLista(proximo).equals(this.proximo)){
+        if(consultarLista(cpf).equals(this.proximo.cliente.getCpf())){
             aux = this.proximo.getLista();
             
         }
