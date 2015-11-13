@@ -39,7 +39,11 @@ public class BancoClienteFLista {
     public void setLista(BancoClienteFLista proximo){
         this.proximo = proximo;
     }
-   
+    /*
+    public BancoClienteFLista anterior(){
+        
+    }
+    */
       
     public void inserirLista(BancoClienteFLista proximo){
         this.proximo.setLista(proximo.getLista());
@@ -50,22 +54,18 @@ public class BancoClienteFLista {
         if(this.cliente.getCpf().equals(cpf)){
             return this.cliente;
         }else{
-            aux = this.proximo;
+            aux = this.proximo.proximo;
             consultarLista(aux.cliente.getCpf());
         }
-        
         return null;
     }
-    
+    /*
     public void excluirLista(String cpf){
-        BancoClienteFLista aux;
-        if(this.cliente.equals(consultarLista(cpf))){
-            
-            
-            aux = this.proximo.getLista();
-            
+        BancoClienteFLista aux = null,anterior = null;
+        if(this.proximo.getLista().getLista().getCliente().equals(consultarLista(cpf))){
+            anterior.setLista(this.proximo.getLista().getLista());
+            aux.setLista(this.proximo.getLista().getLista().getLista());
         }
-        
-        
     }
+    */
 }
