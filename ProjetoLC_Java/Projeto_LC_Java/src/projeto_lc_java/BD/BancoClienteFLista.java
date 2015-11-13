@@ -17,12 +17,15 @@ import projeto_lc_java.ClienteFisico;
  */
 public class BancoClienteFLista {
     private ClienteFisico cliente;
-    private BancoClienteFLista proximo;
+    private BancoClienteFLista ponteiro;
+    // private BancoClienteFLista ultimo;
+    
     
     
     public BancoClienteFLista(ClienteFisico cliente){
         this.cliente = cliente;
-        this.proximo = null;
+        this.ponteiro = null;
+        //this.ultimo = null;
     }
     
     public ClienteFisico getCliente(){
@@ -32,21 +35,31 @@ public class BancoClienteFLista {
         this.cliente = cliente;
     }
     
-    public BancoClienteFLista getLista(){
-        return this.proximo;
+    public BancoClienteFLista getPonteiro(){
+        return this.ponteiro;
     }
     
-    public void setLista(BancoClienteFLista proximo){
-        this.proximo = proximo;
+    public void setPonteiro(BancoClienteFLista proximo){
+        this.ponteiro = proximo;
     }
     /*
-    public BancoClienteFLista anterior(){
-        
+    public BancoClienteFLista proximo(){
+        if(this.ponteiro != null){
+            return this.ponteiro.getPonteiro();
+        }else{
+            return null;
+        }
     }
     */
       
     public void inserirLista(BancoClienteFLista proximo){
-        this.proximo.setLista(proximo.getLista());
+        BancoClienteFLista aux;
+        if(this.ponteiro.equals(null)){
+            this.ponteiro.setPonteiro(proximo);
+        }else{
+            aux = this.ponteiro;
+            inserirLista(aux);
+        }
     }
     
     public ClienteFisico consultarLista(String cpf){
@@ -54,18 +67,24 @@ public class BancoClienteFLista {
         if(this.cliente.getCpf().equals(cpf)){
             return this.cliente;
         }else{
-            aux = this.proximo.proximo;
+            aux = this.ponteiro;
             consultarLista(aux.cliente.getCpf());
         }
         return null;
     }
-    /*
-    public void excluirLista(String cpf){
-        BancoClienteFLista aux = null,anterior = null;
-        if(this.proximo.getLista().getLista().getCliente().equals(consultarLista(cpf))){
-            anterior.setLista(this.proximo.getLista().getLista());
-            aux.setLista(this.proximo.getLista().getLista().getLista());
+    
+    public void excluirLista(BancoClienteFLista proximo){
+        BancoClienteFLista aux = null;
+        /*
+        if(this.ponteiro.equals(proximo)){
+            aux.setPonteiro(this.ponteiro.getPonteiro());
+            this.ponteiro.setPonteiro(aux);
+            this.ponteiro.getPonteiro().getPonteiro().setPonteiro(null);
+        }else{
+            aux.setPonteiro(this.ponteiro);
+            excluirLista(aux);
         }
+        */
     }
-    */
+    
 }
