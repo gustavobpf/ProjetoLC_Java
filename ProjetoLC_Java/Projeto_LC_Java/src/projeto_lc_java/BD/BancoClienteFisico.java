@@ -60,6 +60,7 @@ public class BancoClienteFisico {
         for(int i=0;i<this.indice;i++){
             if(this.clientes[i].getCpf().equals(cpf)){
                 aux = this.clientes[i];
+                break;
             }
         }
         return aux;
