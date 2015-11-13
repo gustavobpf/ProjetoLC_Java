@@ -47,7 +47,7 @@ public class BancoClienteFisico {
         ClienteFisico aux[] = new ClienteFisico[1000];
         int j=0;
         for(int i=0; i<this.indice;i++){
-           if(this.clientes[i].getCpf() != cpf){
+           if(!this.clientes[i].getCpf().equals(cpf)){
                aux[j] = this.clientes[i];
                j++;
            }
