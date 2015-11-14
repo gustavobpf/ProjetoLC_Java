@@ -15,14 +15,14 @@ import projeto_lc_java.ClienteFisico;
  *
  * @author Aluno
  */
-public class BancoClienteFLista {
+public class RepositorioClienteFLista {
     private ClienteFisico cliente;
-    private BancoClienteFLista ponteiro;
+    private RepositorioClienteFLista ponteiro;
     // private BancoClienteFLista ultimo;
     
     
     
-    public BancoClienteFLista(ClienteFisico cliente){
+    public RepositorioClienteFLista(ClienteFisico cliente){
         this.cliente = cliente;
         this.ponteiro = null;
         //this.ultimo = null;
@@ -35,11 +35,11 @@ public class BancoClienteFLista {
         this.cliente = cliente;
     }
     
-    public BancoClienteFLista getPonteiro(){
+    public RepositorioClienteFLista getPonteiro(){
         return this.ponteiro;
     }
     
-    public void setPonteiro(BancoClienteFLista proximo){
+    public void setPonteiro(RepositorioClienteFLista proximo){
         this.ponteiro = proximo;
     }
     /*
@@ -52,8 +52,8 @@ public class BancoClienteFLista {
     }
     */
       
-    public void inserirLista(BancoClienteFLista proximo){
-        BancoClienteFLista aux;
+    public void inserirLista(RepositorioClienteFLista proximo){
+        RepositorioClienteFLista aux;
         if(this.ponteiro.equals(null)){
             this.ponteiro.setPonteiro(proximo);
         }else{
@@ -63,7 +63,7 @@ public class BancoClienteFLista {
     }
     
     public ClienteFisico consultarLista(String cpf){
-        BancoClienteFLista aux;
+        RepositorioClienteFLista aux;
         if(this.cliente.getCpf().equals(cpf)){
             return this.cliente;
         }else{
@@ -73,8 +73,8 @@ public class BancoClienteFLista {
         return null;
     }
     
-    public void excluirLista(BancoClienteFLista proximo){
-        BancoClienteFLista aux = null;
+    public void excluirLista(RepositorioClienteFLista proximo){
+        RepositorioClienteFLista aux = null;
         /*
         if(this.ponteiro.equals(proximo)){
             aux.setPonteiro(this.ponteiro.getPonteiro());

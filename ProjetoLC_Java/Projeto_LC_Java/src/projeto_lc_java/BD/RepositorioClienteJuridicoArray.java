@@ -11,11 +11,11 @@ import projeto_lc_java.ClienteJuridico;
  *
  * @author Marlene
  */
-public class BancoClienteJuridico {
+public class RepositorioClienteJuridicoArray {
     private ClienteJuridico clientes[];
     private int     indice;
     
-    public BancoClienteJuridico(){
+    public RepositorioClienteJuridicoArray(){
         this.clientes = new ClienteJuridico[1000];
         this.indice   = 0;
     }
