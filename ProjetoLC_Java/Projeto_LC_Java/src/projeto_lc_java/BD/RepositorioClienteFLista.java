@@ -52,28 +52,28 @@ public class RepositorioClienteFLista {
     }
     */
       
-    public void inserirLista(RepositorioClienteFLista proximo){
+    public void inserirCliente(RepositorioClienteFLista proximo){
         RepositorioClienteFLista aux;
         if(this.ponteiro.equals(null)){
             this.ponteiro.setPonteiro(proximo);
         }else{
             aux = this.ponteiro;
-            inserirLista(aux);
+            inserirCliente(aux);
         }
     }
     
-    public ClienteFisico consultarLista(String cpf){
+    public ClienteFisico consultarCliente(String cpf){
         RepositorioClienteFLista aux;
         if(this.cliente.getCpf().equals(cpf)){
             return this.cliente;
         }else{
             aux = this.ponteiro;
-            consultarLista(aux.cliente.getCpf());
+            consultarCliente(aux.cliente.getCpf());
         }
         return null;
     }
     
-    public void excluirLista(RepositorioClienteFLista proximo){
+    public void excluirCliente(RepositorioClienteFLista proximo){
         RepositorioClienteFLista aux = null;
         /*
         if(this.ponteiro.equals(proximo)){
