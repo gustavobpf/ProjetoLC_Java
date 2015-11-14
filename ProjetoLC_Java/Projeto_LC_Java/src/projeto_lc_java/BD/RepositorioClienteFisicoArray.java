@@ -56,14 +56,12 @@ public class RepositorioClienteFisicoArray {
     }
     
     public ClienteFisico consultarCliente(String cpf){
-        ClienteFisico aux = new ClienteFisico();
         for(int i=0;i<this.indice;i++){
             if(this.clientes[i].getCpf().equals(cpf)){
-                aux = this.clientes[i];
-                break;
+                return this.clientes[i];
             }
         }
-        return aux;
+        return null;
     }
     
     public void atualizarCliente(String cpf, ClienteFisico cliente){

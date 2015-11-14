@@ -75,6 +75,13 @@ public class RepositorioClienteFLista {
     
     public void excluirCliente(RepositorioClienteFLista proximo){
         RepositorioClienteFLista aux = null;
+        if(this.ponteiro.getCliente().getCpf().equals(proximo.getCliente().getCpf())){
+            this.ponteiro.setPonteiro(proximo.getPonteiro());
+            proximo.setPonteiro(null);
+        }else{
+            this.ponteiro.consultarCliente(this.ponteiro.getPonteiro().getCliente().getCpf());
+        }
+        
         /*
         if(this.ponteiro.equals(proximo)){
             aux.setPonteiro(this.ponteiro.getPonteiro());
