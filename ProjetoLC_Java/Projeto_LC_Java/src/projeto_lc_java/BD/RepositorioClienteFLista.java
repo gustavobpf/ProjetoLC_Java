@@ -42,16 +42,7 @@ public class RepositorioClienteFLista {
     public void setPonteiro(RepositorioClienteFLista proximo){
         this.ponteiro = proximo;
     }
-    /*
-    public BancoClienteFLista proximo(){
-        if(this.ponteiro != null){
-            return this.ponteiro.getPonteiro();
-        }else{
-            return null;
-        }
-    }
-    */
-      
+          
     public void inserirCliente(RepositorioClienteFLista proximo){
         RepositorioClienteFLista aux;
         if(this.ponteiro.equals(null)){
@@ -81,17 +72,6 @@ public class RepositorioClienteFLista {
         }else{
             this.ponteiro.consultarCliente(this.ponteiro.getPonteiro().getCliente().getCpf());
         }
-        
-        /*
-        if(this.ponteiro.equals(proximo)){
-            aux.setPonteiro(this.ponteiro.getPonteiro());
-            this.ponteiro.setPonteiro(aux);
-            this.ponteiro.getPonteiro().getPonteiro().setPonteiro(null);
-        }else{
-            aux.setPonteiro(this.ponteiro);
-            excluirLista(aux);
-        }
-        */
     }
     
 }
