@@ -16,7 +16,7 @@ public class RepositorioClienteJLista {
     
     private ClienteJuridico cliente;
     private RepositorioClienteJLista ponteiro;
-    // private BancoClienteFLista ultimo;
+    
     
     
     
