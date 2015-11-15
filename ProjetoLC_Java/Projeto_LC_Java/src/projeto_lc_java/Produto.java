@@ -47,7 +47,7 @@ public class Produto {
         return this.descricao;
     }
     public void setDescricao(String descricao){
-        this.descricao = descricao;
+        this.descricao = descricao.toUpperCase();
     }
     
 //Quantidade
