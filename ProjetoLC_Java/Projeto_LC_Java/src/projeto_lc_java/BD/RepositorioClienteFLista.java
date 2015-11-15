@@ -65,13 +65,20 @@ public class RepositorioClienteFLista {
     }
     
     public void excluirCliente(RepositorioClienteFLista proximo){
-        RepositorioClienteFLista aux = null;
+        
         if(this.ponteiro.getCliente().getCpf().equals(proximo.getCliente().getCpf())){
             this.ponteiro.setPonteiro(proximo.getPonteiro());
             proximo.setPonteiro(null);
         }else{
-            this.ponteiro.consultarCliente(this.ponteiro.getPonteiro().getCliente().getCpf());
+            excluirCliente(this.ponteiro.getPonteiro());
         }
     }
     
+    public void atualizarCliente(String cpf, ClienteFisico cliente){
+        if(this.ponteiro.getCliente().getCpf().equals(cpf)){
+            this.ponteiro.setCliente(cliente);
+        }else{
+            atualizarCliente(cpf,this.ponteiro.getPonteiro().getCliente());
+        }
+    }
 }
