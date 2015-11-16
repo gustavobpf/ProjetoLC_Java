@@ -11,22 +11,25 @@ import java.util.Date;
  *
  * @author Marlene
  */
-public class Transacao {
+public class Compra {
     private String nf;
     private String data;
     private Produto produto;
+    private Cliente cliente;
 
     //Construtor de Transacao sem os parâmetros
-    public Transacao(){
+    public Compra(){
         this.nf      = null;
         this.data    = null;
         this.produto = null;
+        this.cliente = null;
     }
-    //Construtor de Transacao com todos os parâmetros
-    public Transacao(String nf, String data, Produto produto){
+    //Construtor de Compra com todos os parâmetros
+    public Compra(String nf, String data, Produto produto, Cliente cliente){
         this.nf      = nf;
         this.data    = data;
         this.produto = produto;
+        this.cliente = cliente;
     }
     
     //Métodos Get's and Set's
@@ -39,7 +42,7 @@ public class Transacao {
         this.nf = nf;
     }
     
-//Data da Transacao (Compra ou Venda)
+//Data da Compra (Compra)
     public String getData(){
         return this.data;
     }
@@ -47,11 +50,19 @@ public class Transacao {
         this.data = data;
     }
     
-//Produto da transacao (Compra ou Venda)
+//Produto da Compra (Compra)
     public Produto getProduto(){
         return this.produto;
     }
     public void setProduto(Produto produto){
         this.produto = produto;
+    }
+    
+//Cliente da Compra (Compra)    
+    public Cliente getCliente(){
+        return this.cliente;
+    }
+    public void setCliente(Cliente cliente){
+        this.cliente = cliente;
     }
 }

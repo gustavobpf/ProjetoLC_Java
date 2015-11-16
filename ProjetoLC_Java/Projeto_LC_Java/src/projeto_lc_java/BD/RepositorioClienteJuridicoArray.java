@@ -52,7 +52,7 @@ public class RepositorioClienteJuridicoArray {
                j++;
            }
         }
-        clientes = aux;
+        this.clientes = aux;
     }
     
     public ClienteJuridico consultarCliente(String cpf){
