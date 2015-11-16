@@ -38,7 +38,7 @@ public class RepositorioClienteJuridicoArray {
     
     
     
-    public void cadastrarCliente(ClienteJuridico cliente){
+    public void inserirCliente(ClienteJuridico cliente){
         this.clientes[this.indice] = cliente;
         this.indice++;
     }
@@ -65,9 +65,9 @@ public class RepositorioClienteJuridicoArray {
         return aux;
     }
     
-    public void atualizarCliente(ClienteJuridico cliente){
+    public void atualizarCliente(String cnpj, ClienteJuridico cliente){
         for(int i=0; i<this.indice;i++){
-            if(this.clientes[i].getCnpj().equals(cliente.getCnpj())){
+            if(this.clientes[i].getCnpj().equals(cnpj)){
                 this.clientes[i] = cliente;
             }
         }

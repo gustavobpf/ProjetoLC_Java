@@ -50,7 +50,7 @@ public class RepositorioProdutoArray {
         this.produto = aux;
     }
     
-    public Produto procurarProduto(String descricao){
+    public Produto consultarProduto(String descricao){
         for(int i=0;i<this.indice;i++){
             if(this.produto[i].getDescricao().equals(descricao)){
                 return this.produto[i];
