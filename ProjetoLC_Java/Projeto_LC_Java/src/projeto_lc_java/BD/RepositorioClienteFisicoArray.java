@@ -6,6 +6,9 @@
 package projeto_lc_java.BD;
 
 import projeto_lc_java.ClienteFisico;
+import projeto_lc_java.Exception.InserirClienteException;
+import projeto_lc_java.Exception.ConsultarClienteException;
+import projeto_lc_java.Exception.AtualizarClienteException;
 
 /**
  *
@@ -38,9 +41,16 @@ public class RepositorioClienteFisicoArray {
     
     
     
-    public void inserirCliente(ClienteFisico cliente){
-        this.clientes[this.indice] = cliente;
-        this.indice++;
+    public void inserirCliente(ClienteFisico cliente) throws InserirClienteException{
+        if(this.indice < 1000){
+            this.clientes[this.indice] = cliente;
+            this.indice++;
+        }else{
+            InserirClienteException e;
+            e = new InserirClienteException(cliente);
+            throw e;
+        }
+        
     }
     
     public void excluirCliente(String cpf){
@@ -55,19 +65,27 @@ public class RepositorioClienteFisicoArray {
         this.clientes = aux;
     }
     
-    public ClienteFisico consultarCliente(String cpf){
+    public ClienteFisico consultarCliente(String cpf) throws ConsultarClienteException{
         for(int i=0;i<this.indice;i++){
             if(this.clientes[i].getCpf().equals(cpf)){
                 return this.clientes[i];
+            }else{
+                ConsultarClienteException e;
+                e = new ConsultarClienteException(cpf);
+                throw e;
             }
         }
         return null;
     }
     
-    public void atualizarCliente(String cpf, ClienteFisico cliente){
+    public void atualizarCliente(String cpf, ClienteFisico cliente) throws AtualizarClienteException{
         for(int i=0; i<this.indice;i++){
             if(this.clientes[i].getCpf().equals(cpf)){
                 this.clientes[i] = cliente;
+            }else{
+                AtualizarClienteException e;
+                e = new AtualizarClienteException(cliente);
+                throw e;
             }
         }
     }
