@@ -6,10 +6,15 @@
 
 package projeto_lc_java.Controle;
 import projeto_lc_java.ClienteFisico;
-//import projeto_lc_java.BD.RepositorioClienteFLista;
+
+//Exccptions
+import projeto_lc_java.Exception.ClienteJaCadastradoException;
+import projeto_lc_java.Exception.ClienteNaoEncontradoException;
+
+//Repositorios
 import projeto_lc_java.BD.RepositorioClienteFisicoArray;
-//import projeto_lc_java.Exception.InserirClienteException;
-//import projeto_lc_java.Exception.InserirRepositorioClienteException;
+//import projeto_lc_java.BD.RepositorioClienteFLista;
+
 
 /**
  *
@@ -24,30 +29,13 @@ public class ControleClienteFisico {
         this.clientes = cliente;
     }
      
-    public void cadastrarCliente(ClienteFisico cliente) /*throws InserirRepositorioClienteException*/{
-        if(!cliente.getCpf().equals("") || !cliente.getCpf().equals(null) || !cliente.getCpf().equals(" ")) {
-            clientes.inserirCliente(cliente);
+    public void cadastrar(ClienteFisico cliente) throws ClienteNaoEncontradoException,ClienteJaCadastradoException {
+        if(this.clientes.consultar(cliente.getCpf()) == null){
+            this.clientes.inserir(cliente);
+        }else{
+            throw new ClienteJaCadastradoException(cliente.getCpf());
         }
-        /*
-        else{
-            InserirRepositorioClienteException e;
-            e = new InserirRepositorioClienteException(cliente);
-            throw e;
-        }*/
     }
-     
-    public void removerCliente(String cpf) throws RepositorioException{
-        //REGRA DE NEGOCIO
-        clientes.excluirCliente(cpf);
-    }
-     
-    public void modificarCliente(ClienteFisico cliente) throws RepositorioException{
-        //REGRA DE NEGOCIO
-        clientes.atualizarCliente(cliente.getCpf(),cliente);
-    }
-     
-    public ClienteFisico procurarCliente(String cpf) throws RepositorioException{
-        //REGRA DE NEGOCIO
-        return (ClienteFisico) clientes.consultarCliente(cpf);
-    }
+    
+    
 }

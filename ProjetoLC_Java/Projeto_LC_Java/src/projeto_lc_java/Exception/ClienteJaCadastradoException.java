@@ -11,11 +11,11 @@ package projeto_lc_java.Exception;
  *
  * @author ProExC
  */
-public class ConsultarClienteException extends Exception{
+public class ClienteJaCadastradoException extends Exception{
     private String cpf;
     
-    public ConsultarClienteException(String cpf){
-        super("Cliente não encontrado!");
+    public ClienteJaCadastradoException(String cpf){
+        super("Cliente ja Cadastrado!");
         this.cpf = cpf;
     }
     

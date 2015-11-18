@@ -15,18 +15,12 @@ import projeto_lc_java.ClienteFisico;
  *
  * @author Aluno
  */
-public class RepositorioClienteFLista {
+public class RepositorioClienteFLista implements IRepositorioCliente{
     private ClienteFisico cliente;
     private RepositorioClienteFLista ponteiro;
     // private BancoClienteFLista ultimo;
     
     
-    
-    public RepositorioClienteFLista(ClienteFisico cliente){
-        this.cliente = cliente;
-        this.ponteiro = null;
-        //this.ultimo = null;
-    }
     
     public ClienteFisico getCliente(){
         return this.cliente;
@@ -42,43 +36,72 @@ public class RepositorioClienteFLista {
     public void setPonteiro(RepositorioClienteFLista proximo){
         this.ponteiro = proximo;
     }
-          
-    public void inserirCliente(RepositorioClienteFLista proximo){
-        RepositorioClienteFLista aux;
+    
+    @Override
+    public void inserir(ClienteFisico cliente){
         if(this.ponteiro.equals(null)){
-            this.ponteiro.setPonteiro(proximo);
+            this.ponteiro.setCliente(cliente);
+            this.ponteiro = new RepositorioClienteFLista();
         }else{
-            aux = this.ponteiro;
-            inserirCliente(aux);
+            this.ponteiro.inserir(cliente);
         }
     }
     
-    public ClienteFisico consultarCliente(String cpf){
+    @Override
+    public ClienteFisico consultar(String cpf){
         RepositorioClienteFLista aux;
         if(this.cliente.getCpf().equals(cpf)){
             return this.cliente;
         }else{
             aux = this.ponteiro;
-            consultarCliente(aux.cliente.getCpf());
+            consultar(aux.cliente.getCpf());
         }
         return null;
     }
     
-    public void excluirCliente(RepositorioClienteFLista proximo){
+    @Override
+    public void excluir(String cpf) {
+        if(this.cliente != null){
+            if(this.cliente.getCpf().equals(cpf)){
+                this.cliente = this.ponteiro.cliente;
+                this.ponteiro = this.ponteiro.ponteiro;
+            }else{
+                this.ponteiro.excluir(cpf);
+            }
+        }
         
-        if(this.ponteiro.getCliente().getCpf().equals(proximo.getCliente().getCpf())){
-            this.ponteiro.setPonteiro(proximo.getPonteiro());
-            proximo.setPonteiro(null);
+    }
+
+    @Override
+    public void atualizar(ClienteFisico cliente) {
+        if(this.cliente.getCpf().equals(cliente.getCpf())){
+            this.cliente = cliente;
         }else{
-            excluirCliente(this.ponteiro.getPonteiro());
+            this.ponteiro.atualizar(cliente);
         }
     }
     
-    public void atualizarCliente(String cpf, ClienteFisico cliente){
-        if(this.ponteiro.getCliente().getCpf().equals(cpf)){
-            this.ponteiro.setCliente(cliente);
+    
+    /*
+    public void excluir(String cpf){
+        
+        if(this.cliente.getCpf().equals(cpf)){
+            this.ponteiro.setPonteiro(proximo.getPonteiro());
+            proximo.setPonteiro(null);
         }else{
-            atualizarCliente(cpf,this.ponteiro.getPonteiro().getCliente());
+            excluir(this.ponteiro.getPonteiro());
         }
     }
+    
+    public void atualizar(ClienteFisico cliente){
+        if(this.ponteiro.getCliente().getCpf().equals(cliente.getCpf())){
+            this.ponteiro.setCliente(cliente);
+        }else{
+            atualizar(this.ponteiro.getPonteiro().getCliente());
+        }
+    }
+    
+    */
+
+    
 }

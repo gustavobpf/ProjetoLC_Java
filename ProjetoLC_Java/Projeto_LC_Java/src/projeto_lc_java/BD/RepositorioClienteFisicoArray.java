@@ -6,15 +6,19 @@
 package projeto_lc_java.BD;
 
 import projeto_lc_java.ClienteFisico;
+/*
 import projeto_lc_java.Exception.InserirClienteException;
 import projeto_lc_java.Exception.ConsultarClienteException;
 import projeto_lc_java.Exception.AtualizarClienteException;
+*/
+import projeto_lc_java.Exception.ClienteNaoEncontradoException;
+
 
 /**
  *
  * @author Marlene
  */
-public class RepositorioClienteFisicoArray {
+public class RepositorioClienteFisicoArray implements IRepositorioCliente{
     private ClienteFisico clientes[];
     private int           indice;
     
@@ -40,20 +44,17 @@ public class RepositorioClienteFisicoArray {
     }
     
     
-    
-    public void inserirCliente(ClienteFisico cliente) throws InserirClienteException{
+    @Override
+    public void inserir(ClienteFisico cliente){
         if(this.indice < 1000){
             this.clientes[this.indice] = cliente;
             this.indice++;
-        }else{
-            InserirClienteException e;
-            e = new InserirClienteException(cliente);
-            throw e;
         }
         
     }
     
-    public void excluirCliente(String cpf){
+    @Override
+    public void excluir(String cpf){
         ClienteFisico aux[] = new ClienteFisico[1000];
         int j=0;
         for(int i=0; i<this.indice;i++){
@@ -65,27 +66,21 @@ public class RepositorioClienteFisicoArray {
         this.clientes = aux;
     }
     
-    public ClienteFisico consultarCliente(String cpf) throws ConsultarClienteException{
+    @Override
+    public ClienteFisico consultar(String cpf) throws ClienteNaoEncontradoException{
         for(int i=0;i<this.indice;i++){
             if(this.clientes[i].getCpf().equals(cpf)){
                 return this.clientes[i];
-            }else{
-                ConsultarClienteException e;
-                e = new ConsultarClienteException(cpf);
-                throw e;
             }
         }
-        return null;
+        throw new ClienteNaoEncontradoException(cpf);
     }
     
-    public void atualizarCliente(String cpf, ClienteFisico cliente) throws AtualizarClienteException{
+    @Override
+    public void atualizar(ClienteFisico cliente){
         for(int i=0; i<this.indice;i++){
-            if(this.clientes[i].getCpf().equals(cpf)){
+            if(this.clientes[i].getCpf().equals(cliente.getCpf())){
                 this.clientes[i] = cliente;
-            }else{
-                AtualizarClienteException e;
-                e = new AtualizarClienteException(cliente);
-                throw e;
             }
         }
     }
