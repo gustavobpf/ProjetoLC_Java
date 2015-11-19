@@ -6,25 +6,21 @@
 
 package projeto_lc_java.BD;
 
-import projeto_lc_java.ClienteJuridico;
+import projeto_lc_java.BD.Interfaces.IRepositorioClienteJ;
+import projeto_lc_java.ClassesBasicas.ClienteJuridico;
+import projeto_lc_java.Exception.ClienteNaoEncontradoException;
 
 /**
  *
  * @author Andressa
  */
-public class RepositorioClienteJLista {
+public class RepositorioClienteJLista implements IRepositorioClienteJ{
     
     private ClienteJuridico cliente;
     private RepositorioClienteJLista ponteiro;
     
     
-    
-    
-    public RepositorioClienteJLista(ClienteJuridico cliente){
-        this.cliente = cliente;
-        this.ponteiro = null;
-    }
-    
+    //Métodos Padroes 
     public ClienteJuridico getCliente(){
         return this.cliente;
     }
@@ -39,43 +35,55 @@ public class RepositorioClienteJLista {
     public void setPonteiro(RepositorioClienteJLista proximo){
         this.ponteiro = proximo;
     }
-          
-    public void inserirCliente(RepositorioClienteJLista proximo){
-        RepositorioClienteJLista aux;
-        if(this.ponteiro.equals(null)){
-            this.ponteiro.setPonteiro(proximo);
+    
+    
+    //Métodos da Interface
+    public void inserir(ClienteJuridico cliente){
+        if(this.ponteiro == null){
+            this.ponteiro.setCliente(cliente);
+            this.ponteiro = new RepositorioClienteJLista();
         }else{
-            aux = this.ponteiro;
-            inserirCliente(aux);
+            this.ponteiro.inserir(cliente);
         }
     }
     
-    public ClienteJuridico consultarCliente(String cnpj){
-        RepositorioClienteJLista aux;
+    public ClienteJuridico consultar(String cnpj) throws ClienteNaoEncontradoException{
         if(this.cliente.getCnpj().equals(cnpj)){
             return this.cliente;
         }else{
-            aux = this.ponteiro;
-            consultarCliente(aux.cliente.getCnpj());
+            this.ponteiro.consultar(cnpj);
         }
-        return null;
+        throw new ClienteNaoEncontradoException(cnpj);
     }
     
-    public void excluirCliente(RepositorioClienteJLista proximo){
-        
-        if(this.ponteiro.getCliente().getCnpj().equals(proximo.getCliente().getCnpj())){
-            this.ponteiro.setPonteiro(proximo.getPonteiro());
-            proximo.setPonteiro(null);
-        }else{
-            excluirCliente(this.ponteiro.getPonteiro());
+    public void excluir(String cnpj){
+        if(this.cliente != null){
+            if(this.cliente.getCnpj().equals(cnpj)){
+                this.cliente = this.ponteiro.cliente;
+                this.ponteiro = this.ponteiro.ponteiro;
+            }else{
+                this.ponteiro.excluir(cnpj);
+            }
         }
     }
     
-    public void atualizarCliente(String cnpj, ClienteJuridico cliente){
-        if(this.ponteiro.getCliente().getCnpj().equals(cnpj)){
-            this.ponteiro.setCliente(cliente);
+    public void atualizar(ClienteJuridico cliente){
+         if(this.cliente.getCnpj().equals(cliente.getCnpj())){
+            this.cliente = cliente;
         }else{
-            atualizarCliente(cnpj,this.ponteiro.getPonteiro().getCliente());
+            this.ponteiro.atualizar(cliente);
         }
     }
+
+
+    @Override
+    public boolean jaExiste(String cnpj) {
+        if(this.cliente.getCnpj().equals(cnpj)){
+            return true;
+        }else{
+            this.ponteiro.jaExiste(cnpj);
+        }
+        return false;
+    }
+    
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projeto_lc_java;
+package projeto_lc_java.ClassesBasicas;
 
 /**
  *
@@ -85,4 +85,3 @@ public class Cliente {
         this.endereco = endereco;
     }
 }
-

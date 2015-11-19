@@ -5,7 +5,7 @@
  */
 
 package projeto_lc_java.BD;
-import projeto_lc_java.Venda;
+import projeto_lc_java.ClassesBasicas.Venda;
 /**
  *
  * @author NATI4

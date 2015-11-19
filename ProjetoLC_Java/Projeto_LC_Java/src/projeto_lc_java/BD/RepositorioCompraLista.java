@@ -5,7 +5,7 @@
  */
 
 package projeto_lc_java.BD;
-import projeto_lc_java.Compra;
+import projeto_lc_java.ClassesBasicas.Compra;
 
 /**
  *

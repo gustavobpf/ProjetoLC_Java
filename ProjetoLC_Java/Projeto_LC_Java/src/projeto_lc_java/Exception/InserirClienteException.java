@@ -6,7 +6,7 @@
 
 package projeto_lc_java.Exception;
 
-import projeto_lc_java.ClienteFisico;
+import projeto_lc_java.ClassesBasicas.ClienteFisico;
 
 /**
  *

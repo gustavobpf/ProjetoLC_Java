@@ -7,7 +7,7 @@
 package projeto_lc_java.Controle;
 //import projeto_lc_java.BD.RepositorioClienteJLista;
 import projeto_lc_java.BD.RepositorioClienteJuridicoArray;
-import projeto_lc_java.ClienteJuridico;
+import projeto_lc_java.ClassesBasicas.ClienteJuridico;
 
 /**
  *

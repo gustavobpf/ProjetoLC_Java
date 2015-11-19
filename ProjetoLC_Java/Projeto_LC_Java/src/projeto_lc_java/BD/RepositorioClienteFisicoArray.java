@@ -5,12 +5,10 @@
  */
 package projeto_lc_java.BD;
 
-import projeto_lc_java.ClienteFisico;
-/*
-import projeto_lc_java.Exception.InserirClienteException;
-import projeto_lc_java.Exception.ConsultarClienteException;
-import projeto_lc_java.Exception.AtualizarClienteException;
-*/
+import projeto_lc_java.BD.Interfaces.IRepositorioClienteF;
+import projeto_lc_java.ClassesBasicas.ClienteFisico;
+
+
 import projeto_lc_java.Exception.ClienteNaoEncontradoException;
 
 
@@ -18,7 +16,7 @@ import projeto_lc_java.Exception.ClienteNaoEncontradoException;
  *
  * @author Marlene
  */
-public class RepositorioClienteFisicoArray implements IRepositorioCliente{
+public class RepositorioClienteFisicoArray implements IRepositorioClienteF{
     private ClienteFisico clientes[];
     private int           indice;
     
@@ -84,4 +82,15 @@ public class RepositorioClienteFisicoArray implements IRepositorioCliente{
             }
         }
     }
+    
+    
+     public boolean jaExiste(String cpf){
+        for(int i=0;i<this.indice;i++){
+            if(!this.clientes[i].getCpf().equals(cpf)){
+                return false;
+            }
+        }
+        return true;
+    }
+     
 }

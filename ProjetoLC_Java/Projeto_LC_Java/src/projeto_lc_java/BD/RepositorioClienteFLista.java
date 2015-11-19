@@ -9,18 +9,19 @@
 package projeto_lc_java.BD;
 
 //import java.util.List;
-import projeto_lc_java.ClienteFisico;
+import projeto_lc_java.BD.Interfaces.IRepositorioClienteF;
+import projeto_lc_java.ClassesBasicas.ClienteFisico;
+import projeto_lc_java.Exception.ClienteNaoEncontradoException;
 
 /**
  *
  * @author Aluno
  */
-public class RepositorioClienteFLista implements IRepositorioCliente{
+public class RepositorioClienteFLista implements IRepositorioClienteF{
     private ClienteFisico cliente;
     private RepositorioClienteFLista ponteiro;
-    // private BancoClienteFLista ultimo;
     
-    
+   //Métodos Padroes 
     
     public ClienteFisico getCliente(){
         return this.cliente;
@@ -37,6 +38,7 @@ public class RepositorioClienteFLista implements IRepositorioCliente{
         this.ponteiro = proximo;
     }
     
+    //Métodos da Interface
     @Override
     public void inserir(ClienteFisico cliente){
         if(this.ponteiro.equals(null)){
@@ -48,15 +50,13 @@ public class RepositorioClienteFLista implements IRepositorioCliente{
     }
     
     @Override
-    public ClienteFisico consultar(String cpf){
-        RepositorioClienteFLista aux;
+    public ClienteFisico consultar(String cpf) throws ClienteNaoEncontradoException{
         if(this.cliente.getCpf().equals(cpf)){
             return this.cliente;
         }else{
-            aux = this.ponteiro;
-            consultar(aux.cliente.getCpf());
+            this.ponteiro.consultar(cpf);
         }
-        return null;
+        throw new ClienteNaoEncontradoException(cpf);
     }
     
     @Override
@@ -69,7 +69,6 @@ public class RepositorioClienteFLista implements IRepositorioCliente{
                 this.ponteiro.excluir(cpf);
             }
         }
-        
     }
 
     @Override
@@ -80,28 +79,16 @@ public class RepositorioClienteFLista implements IRepositorioCliente{
             this.ponteiro.atualizar(cliente);
         }
     }
-    
-    
-    /*
-    public void excluir(String cpf){
-        
+
+    @Override
+    public boolean jaExiste(String cpf) {
         if(this.cliente.getCpf().equals(cpf)){
-            this.ponteiro.setPonteiro(proximo.getPonteiro());
-            proximo.setPonteiro(null);
+            return true;
         }else{
-            excluir(this.ponteiro.getPonteiro());
+            this.ponteiro.jaExiste(cpf);
         }
+        return false;
     }
-    
-    public void atualizar(ClienteFisico cliente){
-        if(this.ponteiro.getCliente().getCpf().equals(cliente.getCpf())){
-            this.ponteiro.setCliente(cliente);
-        }else{
-            atualizar(this.ponteiro.getPonteiro().getCliente());
-        }
-    }
-    
-    */
 
     
 }

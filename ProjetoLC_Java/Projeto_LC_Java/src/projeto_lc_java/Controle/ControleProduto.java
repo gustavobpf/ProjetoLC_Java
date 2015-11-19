@@ -5,7 +5,7 @@
  */
 
 package projeto_lc_java.Controle;
-import projeto_lc_java.Produto;
+import projeto_lc_java.ClassesBasicas.Produto;
 //import projeto_lc_java.BD.RepositorioProdutoLista;
 import projeto_lc_java.BD.RepositorioProdutoArray;
 

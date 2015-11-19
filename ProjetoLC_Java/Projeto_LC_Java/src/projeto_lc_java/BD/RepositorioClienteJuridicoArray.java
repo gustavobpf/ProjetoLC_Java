@@ -5,13 +5,14 @@
  */
 package projeto_lc_java.BD;
 
-import projeto_lc_java.ClienteJuridico;
+import projeto_lc_java.BD.Interfaces.IRepositorioClienteJ;
+import projeto_lc_java.ClassesBasicas.ClienteJuridico;
 
 /**
  *
  * @author Marlene
  */
-public class RepositorioClienteJuridicoArray {
+public class RepositorioClienteJuridicoArray implements IRepositorioClienteJ{
     private ClienteJuridico clientes[];
     private int     indice;
     
@@ -20,6 +21,7 @@ public class RepositorioClienteJuridicoArray {
         this.indice   = 0;
     }
     
+    //Métodos Padrões da classe
     public ClienteJuridico[] getClientes(){
         return this.clientes;
     }
@@ -37,17 +39,19 @@ public class RepositorioClienteJuridicoArray {
     }
     
     
-    
-    public void inserirCliente(ClienteJuridico cliente){
+    //Métodos da Interface
+    @Override
+    public void inserir(ClienteJuridico cliente){
         this.clientes[this.indice] = cliente;
         this.indice++;
     }
     
-    public void excluirCliente(String cpf){
+    @Override
+    public void excluir(String cnpj){
         ClienteJuridico aux[] = new ClienteJuridico[1000];
         int j=0;
         for(int i=0; i<this.indice;i++){
-           if(this.clientes[i].getCnpj() != cpf){
+           if(this.clientes[i].getCnpj() != cnpj){
                aux[j] = this.clientes[i];
                j++;
            }
@@ -55,21 +59,34 @@ public class RepositorioClienteJuridicoArray {
         this.clientes = aux;
     }
     
-    public ClienteJuridico consultarCliente(String cpf){
+    @Override
+    public ClienteJuridico consultar(String cnpj){
         ClienteJuridico aux = new ClienteJuridico();
         for(int i=0;i<this.indice;i++){
-            if(this.clientes[i].getCnpj().equals(cpf)){
+            if(this.clientes[i].getCnpj().equals(cnpj)){
                 aux = this.clientes[i];
             }
         }
         return aux;
     }
     
-    public void atualizarCliente(String cnpj, ClienteJuridico cliente){
+    @Override
+    public void atualizar(ClienteJuridico cliente){
         for(int i=0; i<this.indice;i++){
-            if(this.clientes[i].getCnpj().equals(cnpj)){
+            if(this.clientes[i].getCnpj().equals(cliente.getCnpj())){
                 this.clientes[i] = cliente;
             }
         }
     }
+
+    @Override
+    public boolean jaExiste(String cnpj) {
+        for(int i=0;i<this.indice;i++){
+            if(this.clientes[i].getCnpj().equals(cnpj)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
 }
