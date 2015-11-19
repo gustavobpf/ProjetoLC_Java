@@ -6,7 +6,7 @@
 
 package projeto_lc_java.BD;
 
-import projeto_lc_java.Produto;
+import projeto_lc_java.ClassesBasicas.Produto;
 /**
  *
  * @author Andressa
@@ -15,12 +15,6 @@ public class RepositorioProdutoLista {
     private Produto produto;
     private RepositorioProdutoLista ponteiro;
     
-    
-    
-    public RepositorioProdutoLista(Produto produto){
-        this.produto = produto;
-        this.ponteiro = null;
-    }
     
     public Produto getProduto(){
         return this.produto;
@@ -36,43 +30,44 @@ public class RepositorioProdutoLista {
     public void setPonteiro(RepositorioProdutoLista proximo){
         this.ponteiro = proximo;
     }
-          
-    public void inserirProduto(RepositorioProdutoLista proximo){
-        RepositorioProdutoLista aux;
-        if(this.ponteiro.equals(null)){
-            this.ponteiro.setPonteiro(proximo);
+    
+    
+    //Métodos da Interface
+    public void inserir(Produto produto){
+        if(this.ponteiro == null){
+            this.ponteiro.setProduto(produto);
+            this.ponteiro = new RepositorioProdutoLista();
         }else{
-            aux = this.ponteiro;
-            inserirProduto(aux);
+            this.ponteiro.inserir(produto);
         }
     }
     
-    public Produto consultarProduto(String descricao){
-        RepositorioProdutoLista aux;
-        if(this.produto.getDescricao().equals(descricao)){
+    public Produto consultar(String descricao){
+       if(this.produto.getDescricao().equals(descricao)){
             return this.produto;
         }else{
-            aux = this.ponteiro;
-            consultarProduto(aux.produto.getDescricao());
+            this.ponteiro.consultar(descricao);
         }
-        return null;
+       return null;
+       // throw new ProdutoNaoEncontradoException(descricao);
     }
     
-    public void excluirCliente(RepositorioProdutoLista proximo){
-        
-        if(this.ponteiro.getProduto().getDescricao().equals(proximo.getProduto().getDescricao())){
-            this.ponteiro.setPonteiro(proximo.getPonteiro());
-            proximo.setPonteiro(null);
-        }else{
-            excluirCliente(this.ponteiro.getPonteiro());
+    public void excluir(String descricao){
+        if(this.produto != null){
+            if(this.produto.getDescricao().equals(descricao)){
+                this.produto = this.ponteiro.produto;
+                this.ponteiro = this.ponteiro.ponteiro;
+            }else{
+                this.ponteiro.excluir(descricao);
+            }
         }
     }
     
-    public void atualizarCliente(String descricao, Produto produto){
-        if(this.ponteiro.getProduto().getDescricao().equals(descricao)){
+    public void atualizar(Produto produto){
+        if(this.ponteiro.getProduto().getDescricao().equals(produto.getDescricao())){
             this.ponteiro.setProduto(produto);
         }else{
-            atualizarCliente(descricao,this.ponteiro.getPonteiro().getProduto());
+            atualizar(this.ponteiro.getPonteiro().getProduto());
         }
     }
 }
