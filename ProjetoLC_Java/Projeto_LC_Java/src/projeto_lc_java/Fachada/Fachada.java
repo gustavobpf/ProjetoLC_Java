@@ -6,34 +6,35 @@
 
 package projeto_lc_java.Fachada;
 
+//Interfaces
 import projeto_lc_java.BD.Interfaces.IRepositorioClienteF;
 import projeto_lc_java.BD.Interfaces.IRepositorioClienteJ;
 import projeto_lc_java.BD.Interfaces.IRepositorioProduto;
 import projeto_lc_java.BD.Interfaces.IRepositorioCompra;
 import projeto_lc_java.BD.Interfaces.IRepositorioVenda;
 
-
+//Repositorios
 import projeto_lc_java.BD.RepositorioClienteFisicoArray;
 import projeto_lc_java.BD.RepositorioClienteJuridicoArray;
 import projeto_lc_java.BD.RepositorioProdutoArray;
 import projeto_lc_java.BD.RepositorioCompraArray;
 import projeto_lc_java.BD.RepositorioVendaArray;
 
-
+//Classes Básicas
 import projeto_lc_java.ClassesBasicas.ClienteFisico;
 import projeto_lc_java.ClassesBasicas.ClienteJuridico;
 import projeto_lc_java.ClassesBasicas.Produto;
 import projeto_lc_java.ClassesBasicas.Compra;
 import projeto_lc_java.ClassesBasicas.Venda;
 
-
+//Controles
 import projeto_lc_java.Controle.ControleClienteFisico;
 import projeto_lc_java.Controle.ControleClienteJuridico;
 import projeto_lc_java.Controle.ControleProduto;
 import projeto_lc_java.Controle.ControleCompra;
 import projeto_lc_java.Controle.ControleVenda;
 
-
+//Exceções
 import projeto_lc_java.Exception.ClienteJaCadastradoException;
 import projeto_lc_java.Exception.ClienteNaoEncontradoException;
 import projeto_lc_java.Exception.ProdutoJaCadastradoException;
