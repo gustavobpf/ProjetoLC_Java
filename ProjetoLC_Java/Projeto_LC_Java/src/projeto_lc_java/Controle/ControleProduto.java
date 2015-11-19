@@ -6,8 +6,12 @@
 
 package projeto_lc_java.Controle;
 import projeto_lc_java.ClassesBasicas.Produto;
-//import projeto_lc_java.BD.RepositorioProdutoLista;
-import projeto_lc_java.BD.RepositorioProdutoArray;
+import projeto_lc_java.BD.Interfaces.IRepositorioProduto;
+
+
+//Exccptions
+import projeto_lc_java.Exception.ProdutoJaCadastradoException;
+import projeto_lc_java.Exception.ProdutoNaoEncontradoException;
 
 
 
@@ -16,31 +20,48 @@ import projeto_lc_java.BD.RepositorioProdutoArray;
  * @author NATI4
  */
 public class ControleProduto {
-    private RepositorioProdutoArray produtos;
+    private IRepositorioProduto produtos;
      
-    //private RepositorioClienteJLista clientes = new RepositorioClienteJLista();
-     
-    public ControleProduto(RepositorioProdutoArray produto){
-        this.produtos = produto;
+    public ControleProduto(IRepositorioProduto produtos){
+        this.produtos = produtos;
+    }
+
+    public ControleProduto() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
      
-    public void cadastrarCliente(Produto produto) throws RepositorioException{
-        //REGRA DE NEGOCIO
-        produtos.inserirProduto(produto);
+    public void cadastrar(Produto produto) throws ProdutoJaCadastradoException {
+        if(produto.getCod() != null || produto.getCod() != "" || 
+           produto.getCod() != " "){
+             if(!this.produtos.jaExiste(produto.getCod())){
+                this.produtos.inserir(produto);
+            }else{
+                throw new ProdutoJaCadastradoException(produto.getCod());
+            }
+        }
     }
-     
-    public void removerCliente(Produto produto) throws RepositorioException{
-        //REGRA DE NEGOCIO
-        produtos.excluirProduto(produto);
+    
+    public void remover(String cod) throws ProdutoNaoEncontradoException {
+        if(this.produtos.jaExiste(cod)){
+            this.produtos.excluir(cod);
+        }else{
+            throw new ProdutoNaoEncontradoException(cod);
+        }
     }
-     
-    public void modificarCliente(Produto produto) throws RepositorioException{
-        //REGRA DE NEGOCIO
-        produtos.atualizarProduto(produto.getDescricao(),produto);
+    
+    public void modificar(Produto produto) throws ProdutoNaoEncontradoException {
+        if(this.produtos.jaExiste(produto.getCod())){
+            this.produtos.atualizar(produto);
+        }else{
+            throw new ProdutoNaoEncontradoException(produto.getCod());
+        }
     }
-     
-    public Produto procurarProduto(String descricao){
-        //REGRA DE NEGOCIO
-        return (Produto) produtos.consultarProduto(descricao);
+    
+    public Produto procurar(String cod) throws ProdutoNaoEncontradoException {
+        if(this.produtos.jaExiste(cod)){
+            return this.produtos.consultar(cod);
+        }else{
+            throw new ProdutoNaoEncontradoException(cod);
+        }
     }
 }

@@ -6,39 +6,58 @@
 
 package projeto_lc_java.Controle;
 import projeto_lc_java.ClassesBasicas.Venda;
-//import projeto_lc_java.BD.RepositorioVendaLista;
-import projeto_lc_java.BD.RepositorioVendaArray;
+import projeto_lc_java.BD.Interfaces.IRepositorioVenda;
+
+import projeto_lc_java.Exception.NfJaCadastradaException;
+import projeto_lc_java.Exception.NfNaoEncontradaException;
 
 /**
  *
  * @author NATI4
  */
 public class ControleVenda {
-    private RepositorioVendaArray vendas;
+    private IRepositorioVenda vendas;
      
-    //private RepositorioClienteJLista clientes = new RepositorioClienteJLista();
-     
-    public ControleVenda(RepositorioVendaArray venda){
-        this.vendas = venda;
+    public ControleVenda(IRepositorioVenda vendas){
+        this.vendas = vendas;
+    }
+
+    public ControleVenda() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
      
-    public void cadastrarVenda(Venda venda) throws RepositorioException{
-        //REGRA DE NEGOCIO
-        vendas.inserirVenda(venda);
+    public void cadastrar(Venda venda) throws NfJaCadastradaException {
+        if(venda.getNf() != null || venda.getNf() != "" || 
+           venda.getNf() != " "){
+             if(!this.vendas.jaExiste(venda.getNf())){
+                this.vendas.inserir(venda);
+            }else{
+                throw new NfJaCadastradaException(venda.getNf());
+            }
+        }
     }
-     
-    public void removerVenda(String nf) throws RepositorioException{
-        //REGRA DE NEGOCIO
-        vendas.excluirVenda(nf);
+    
+    public void remover(String nf) throws NfNaoEncontradaException {
+        if(this.vendas.jaExiste(nf)){
+            this.vendas.excluir(nf);
+        }else{
+            throw new NfNaoEncontradaException(nf);
+        }
     }
-     
-    public void modificarCliente(String nf,Venda venda) throws RepositorioException{
-        //REGRA DE NEGOCIO
-        vendas.atualizarVenda(venda.getNf(),venda);
+    
+    public void modificar(Venda venda) throws NfNaoEncontradaException {
+        if(this.vendas.jaExiste(venda.getNf())){
+            this.vendas.atualizar(venda);
+        }else{
+            throw new NfNaoEncontradaException(venda.getNf());
+        }
     }
-     
-    public Venda procurarVenda(String nf){
-        //REGRA DE NEGOCIO
-        return (Venda) vendas.consultarVenda(nf);
+    
+    public Venda procurar(String nf) throws NfNaoEncontradaException {
+        if(this.vendas.jaExiste(nf)){
+            return this.vendas.consultar(nf);
+        }else{
+            throw new NfNaoEncontradaException(nf);
+        }
     }
 }
