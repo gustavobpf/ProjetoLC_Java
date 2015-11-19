@@ -6,13 +6,14 @@
 
 package projeto_lc_java.BD;
 import projeto_lc_java.ClassesBasicas.Venda;
+import projeto_lc_java.BD.Interfaces.IRepositorioVenda;
 
 /**
  *
  * @author NATI4
  */
-public class RepositorioVendaArray {
-     private Venda vendas[];
+public class RepositorioVendaArray implements IRepositorioVenda{
+    private Venda vendas[];
     private int    indice;
     
     public RepositorioVendaArray(){
@@ -20,6 +21,8 @@ public class RepositorioVendaArray {
         this.indice   = 0;
     }
     
+    
+    //Métodos Classe Básica
     public Venda[] getVendas(){
         return this.vendas;
     }
@@ -36,14 +39,16 @@ public class RepositorioVendaArray {
         this.indice = indice;
     }
     
+    //Métodos da Interface
     
-    
-    public void inserirVenda(Venda venda){
+    @Override
+    public void inserir(Venda venda){
         this.vendas[this.indice] = venda;
         this.indice++;
     }
     
-    public void excluirVenda(String nf){
+    @Override
+    public void excluir(String nf){
         Venda aux[] = new Venda[1000];
         int j=0;
         for(int i=0; i<this.indice;i++){
@@ -55,7 +60,8 @@ public class RepositorioVendaArray {
         this.vendas = aux;
     }
     
-    public Venda consultarVenda(String nf){
+    @Override
+    public Venda consultar(String nf){
         for(int i=0;i<this.indice;i++){
             if(this.vendas[i].getNf().equals(nf)){
                 return this.vendas[i];
@@ -64,11 +70,22 @@ public class RepositorioVendaArray {
         return null;
     }
     
-    public void atualizarVenda(String nf, Venda venda){
+    @Override
+    public void atualizar(Venda venda){
         for(int i=0; i<this.indice;i++){
-            if(this.vendas[i].getNf().equals(nf)){
+            if(this.vendas[i].getNf().equals(venda.getNf())){
                 this.vendas[i] = venda;
             }
         }
+    }
+    
+    @Override
+    public boolean jaExiste(String nf){
+         for(int i=0;i<this.indice;i++){
+            if(this.vendas[i].getNf().equals(nf)){
+                return true;
+            }
+        }
+        return false;
     }
 }

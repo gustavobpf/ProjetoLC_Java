@@ -5,12 +5,14 @@
  */
 
 package projeto_lc_java.BD;
+import projeto_lc_java.BD.Interfaces.IRepositorioCompra;
 import projeto_lc_java.ClassesBasicas.Compra;
+import projeto_lc_java.Exception.NfNaoEncontradaException;
 /**
  *
  * @author NATI4
  */
-public class RepositorioCompraArray {
+public class RepositorioCompraArray implements IRepositorioCompra{
     private Compra compras[];
     private int    indice;
     
@@ -39,12 +41,14 @@ public class RepositorioCompraArray {
     
     
     //Métodos da Interface
-    public void inserirCompra(Compra compra){
+    @Override
+    public void inserir(Compra compra){
         this.compras[this.indice] = compra;
         this.indice++;
     }
     
-    public void excluirCompra(String nf){
+    @Override
+    public void excluir(String nf){
         Compra aux[] = new Compra[1000];
         int j=0;
         for(int i=0; i<this.indice;i++){
@@ -56,20 +60,33 @@ public class RepositorioCompraArray {
         this.compras = aux;
     }
     
-    public Compra consultarCompra(String nf){
+    
+    @Override
+    public Compra consultar(String nf) throws NfNaoEncontradaException{
         for(int i=0;i<this.indice;i++){
             if(this.compras[i].getNf().equals(nf)){
                 return this.compras[i];
             }
         }
-        return null;
+        throw new NfNaoEncontradaException(nf);
     }
     
-    public void atualizarCompra(String nf, Compra compra){
+    @Override
+    public void atualizar(Compra compra){
         for(int i=0; i<this.indice;i++){
-            if(this.compras[i].getNf().equals(nf)){
+            if(this.compras[i].getNf().equals(compra.getNf())){
                 this.compras[i] = compra;
             }
         }
+    }
+    
+    @Override
+    public boolean jaExiste(String nf){
+        for(int i=0;i<this.indice;i++){
+                if(this.compras[i].getNf().equals(nf)){
+                    return true;
+                }
+            }
+        return false;
     }
 }

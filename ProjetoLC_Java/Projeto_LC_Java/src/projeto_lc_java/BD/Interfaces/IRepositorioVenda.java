@@ -6,19 +6,17 @@
 
 package projeto_lc_java.BD.Interfaces;
 
-import projeto_lc_java.ClassesBasicas.Compra;
+import projeto_lc_java.ClassesBasicas.Venda;
 import projeto_lc_java.Exception.NfNaoEncontradaException;
-
 /**
  *
- * @author Aluno
+ * @author NATI4
  */
-public interface IRepositorioCompra {
-    public void inserir(Compra compra);
+public interface IRepositorioVenda {
+    public void inserir(Venda venda);
     public void excluir(String nf);
-    public Compra consultar(String nf) throws NfNaoEncontradaException;
-    public void atualizar(Compra compra);
+    public Venda consultar(String nf) throws NfNaoEncontradaException;
+    public void atualizar(Venda venda);
     
-    public boolean jaExiste(String nf);
-    
+    public boolean jaExiste(String descricao);
 }

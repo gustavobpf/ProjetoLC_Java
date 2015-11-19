@@ -38,6 +38,8 @@ public class RepositorioClienteJLista implements IRepositorioClienteJ{
     
     
     //Métodos da Interface
+    
+    @Override
     public void inserir(ClienteJuridico cliente){
         if(this.ponteiro == null){
             this.ponteiro.setCliente(cliente);
@@ -47,6 +49,7 @@ public class RepositorioClienteJLista implements IRepositorioClienteJ{
         }
     }
     
+    @Override
     public ClienteJuridico consultar(String cnpj) throws ClienteNaoEncontradoException{
         if(this.cliente.getCnpj().equals(cnpj)){
             return this.cliente;
@@ -56,6 +59,7 @@ public class RepositorioClienteJLista implements IRepositorioClienteJ{
         throw new ClienteNaoEncontradoException(cnpj);
     }
     
+    @Override
     public void excluir(String cnpj){
         if(this.cliente != null){
             if(this.cliente.getCnpj().equals(cnpj)){
@@ -67,6 +71,7 @@ public class RepositorioClienteJLista implements IRepositorioClienteJ{
         }
     }
     
+    @Override
     public void atualizar(ClienteJuridico cliente){
          if(this.cliente.getCnpj().equals(cliente.getCnpj())){
             this.cliente = cliente;

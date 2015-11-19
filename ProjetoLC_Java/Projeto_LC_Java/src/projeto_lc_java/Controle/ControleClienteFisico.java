@@ -5,6 +5,8 @@
  */
 
 package projeto_lc_java.Controle;
+
+//Interfaces e Classes Básicas
 import projeto_lc_java.BD.Interfaces.IRepositorioClienteF;
 import projeto_lc_java.ClassesBasicas.ClienteFisico;
 
@@ -12,19 +14,12 @@ import projeto_lc_java.ClassesBasicas.ClienteFisico;
 import projeto_lc_java.Exception.ClienteJaCadastradoException;
 import projeto_lc_java.Exception.ClienteNaoEncontradoException;
 
-//Repositorios
-//import projeto_lc_java.BD.RepositorioClienteFisicoArray;
-//import projeto_lc_java.BD.RepositorioClienteFLista;
-
-
 /**
  *
  * @author NATI4
  */
 public class ControleClienteFisico {
     private IRepositorioClienteF clientes;
-     
-    //private RepositorioClienteJLista clientes = new RepositorioClienteJLista();
      
     public ControleClienteFisico(IRepositorioClienteF clientes){
         this.clientes = clientes;
@@ -35,18 +30,37 @@ public class ControleClienteFisico {
     }
      
     public void cadastrar(ClienteFisico cliente) throws ClienteJaCadastradoException {
-        if(!this.clientes.jaExiste(cliente.getCpf())){
-            this.clientes.inserir(cliente);
-        }else{
-            throw new ClienteJaCadastradoException(cliente.getCpf());
+        if(cliente.getCpf() != null || cliente.getCpf() != "" || 
+           cliente.getCpf() != " "){
+             if(!this.clientes.jaExiste(cliente.getCpf())){
+                this.clientes.inserir(cliente);
+            }else{
+                throw new ClienteJaCadastradoException(cliente.getCpf());
+            }
         }
     }
     
-    public void remover(String cpf){
+    public void remover(String cpf) throws ClienteNaoEncontradoException {
         if(this.clientes.jaExiste(cpf)){
             this.clientes.excluir(cpf);
+        }else{
+            throw new ClienteNaoEncontradoException(cpf);
         }
     }
     
+    public void modificar(ClienteFisico cliente) throws ClienteNaoEncontradoException {
+        if(this.clientes.jaExiste(cliente.getCpf())){
+            this.clientes.atualizar(cliente);
+        }else{
+            throw new ClienteNaoEncontradoException(cliente.getCpf());
+        }
+    }
     
+    public ClienteFisico procurar(String cpf) throws ClienteNaoEncontradoException {
+        if(this.clientes.jaExiste(cpf)){
+            return this.clientes.consultar(cpf);
+        }else{
+            throw new ClienteNaoEncontradoException(cpf);
+        }
+    }
 }

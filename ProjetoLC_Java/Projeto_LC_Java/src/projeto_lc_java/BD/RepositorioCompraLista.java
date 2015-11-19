@@ -5,17 +5,19 @@
  */
 
 package projeto_lc_java.BD;
+import projeto_lc_java.BD.Interfaces.IRepositorioCompra;
 import projeto_lc_java.ClassesBasicas.Compra;
+import projeto_lc_java.Exception.NfNaoEncontradaException;
 
 /**
  *
  * @author NATI4
  */
-public class RepositorioCompraLista {
+public class RepositorioCompraLista implements IRepositorioCompra{
     private Compra compra;
     private RepositorioCompraLista ponteiro;
     
-    
+    //Métodos Básicos
     public Compra getCompra(){
         return this.compra;
     }
@@ -31,42 +33,57 @@ public class RepositorioCompraLista {
         this.ponteiro = proximo;
     }
           
-    public void inserir(RepositorioCompraLista proximo){
-        RepositorioCompraLista aux;
-        if(this.ponteiro.equals(null)){
-            this.ponteiro.setPonteiro(proximo);
+    
+    //Métodos da Interface
+    
+    @Override
+    public void inserir(Compra compra){
+        if(this.ponteiro == null){
+            this.ponteiro.setCompra(compra);
+            this.ponteiro = new RepositorioCompraLista();
         }else{
-            aux = this.ponteiro;
-            inserir(aux);
+            this.ponteiro.inserir(compra);
         }
     }
     
-    public Compra consultar(String nf){
-        RepositorioCompraLista aux;
+    @Override
+    public Compra consultar(String nf) throws NfNaoEncontradaException{
         if(this.compra.getNf().equals(nf)){
             return this.compra;
         }else{
-            aux = this.ponteiro;
-            consultar(aux.compra.getNf());
+            this.ponteiro.consultar(nf);
         }
-        return null;
+        throw new NfNaoEncontradaException(nf);
     }
     
+    @Override
     public void excluir(String nf){
-        
-        if(this.ponteiro.getCompra().getNf().equals(nf)){
-            this.ponteiro.setPonteiro(proximo.getPonteiro());
-            proximo.setPonteiro(null);
-        }else{
-            excluir(this.ponteiro.getPonteiro());
+        if(this.compra != null){
+            if(this.compra.getNf().equals(nf)){
+                this.compra = this.ponteiro.compra;
+                this.ponteiro = this.ponteiro.ponteiro;
+            }else{
+                this.ponteiro.excluir(nf);
+            }
         }
     }
     
+    @Override
     public void atualizar(Compra compra){
-        if(this.ponteiro.getCompra().getNf().equals(nf)){
+        if(this.ponteiro.getCompra().getNf().equals(compra.getNf())){
             this.ponteiro.setCompra(compra);
         }else{
-            atualizar(nf,this.ponteiro.getPonteiro().getCompra());
+            atualizar(this.ponteiro.getPonteiro().getCompra());
         }
+    }
+    
+    @Override
+    public boolean jaExiste(String nf){
+        if(this.compra.getNf().equals(nf)){
+            return true;
+        }else{
+            this.ponteiro.jaExiste(nf);
+        }
+        return false;
     }
 }

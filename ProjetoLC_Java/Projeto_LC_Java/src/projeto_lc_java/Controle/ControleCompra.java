@@ -5,40 +5,61 @@
  */
 
 package projeto_lc_java.Controle;
+//Interfaces e Classes Básicas
+import projeto_lc_java.BD.Interfaces.IRepositorioCompra;
 import projeto_lc_java.ClassesBasicas.Compra;
-//import projeto_lc_java.BD.RepositorioCompraLista;
-import projeto_lc_java.BD.RepositorioCompraArray;
+
+//Exccptions
+import projeto_lc_java.Exception.ClienteJaCadastradoException;
+import projeto_lc_java.Exception.ClienteNaoEncontradoException;
 
 /**
  *
  * @author NATI4
  */
 public class ControleCompra {
-    private RepositorioCompraArray compras;
+    private IRepositorioCompra compras;
      
-    //private RepositorioClienteJLista clientes = new RepositorioClienteJLista();
-     
-    public ControleCompra(RepositorioCompraArray compra){
-        this.compras = compra;
+    public ControleCompra(IRepositorioCompra compras){
+        this.compras = compras;
+    }
+
+    public ControleCompra() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
      
-    public void cadastrarCompra(Compra compra) throws RepositorioException{
-        //REGRA DE NEGOCIO
-        compras.inserirCompra(compra);
+    public void cadastrar(Compra compra) throws ClienteJaCadastradoException {
+        if(compra.getNf() != null || compra.getNf() != "" || 
+           compra.getNf() != " "){
+             if(!this.compras.jaExiste(compra.getNf())){
+                this.compras.inserir(compra);
+            }else{
+                throw new ClienteJaCadastradoException(compra.getNf());
+            }
+        }
     }
-     
-    public void removerCompra(String nf) throws RepositorioException{
-        //REGRA DE NEGOCIO
-        compras.excluirCompra(nf);
+    
+    public void remover(String nf) throws NfNaoEncontradoException {
+        if(this.compras.jaExiste(nf)){
+            this.compras.excluir(nf);
+        }else{
+            throw new ClienteNaoEncontradoException(nf);
+        }
     }
-     
-    public void modificarCompra(String nf,Compra compra) throws RepositorioException{
-        //REGRA DE NEGOCIO
-        compras.atualizarCompra(compra.getNf(),compra);
+    
+    public void modificar(Compra compra) throws NfNaoEncontradoException {
+        if(this.compras.jaExiste(compra.getNf())){
+            this.compras.atualizar(compra);
+        }else{
+            throw new ClienteNaoEncontradoException(compra.getNf());
+        }
     }
-     
-    public Compra procurarCompra(String nf){
-        //REGRA DE NEGOCIO
-        return (Compra) compras.consultarCompra(nf);
+    
+    public Compra procurar(String nf) throws NfNaoEncontradoException {
+        if(this.compras.jaExiste(nf)){
+            return this.compras.consultar(nf);
+        }else{
+            throw new NfNaoEncontradoException(nf);
+        }
     }
 }

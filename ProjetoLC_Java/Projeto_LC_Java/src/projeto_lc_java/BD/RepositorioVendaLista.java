@@ -6,19 +6,18 @@
 
 package projeto_lc_java.BD;
 import projeto_lc_java.ClassesBasicas.Venda;
+import projeto_lc_java.BD.Interfaces.IRepositorioVenda;
+import projeto_lc_java.Exception.NfNaoEncontradaException;
 /**
  *
  * @author NATI4
  */
-public class RepositorioVendaLista {
+public class RepositorioVendaLista implements IRepositorioVenda{
     private Venda venda;
     private RepositorioVendaLista ponteiro;
     
-    public RepositorioVendaLista(Venda venda){
-        this.venda = venda;
-        this.ponteiro = null;
-    }
     
+    //Métodos Básicos
     public Venda getVenda(){
         return this.venda;
     }
@@ -33,43 +32,56 @@ public class RepositorioVendaLista {
     public void setPonteiro(RepositorioVendaLista proximo){
         this.ponteiro = proximo;
     }
-          
-    public void inserirCompra(RepositorioVendaLista proximo){
-        RepositorioVendaLista aux;
-        if(this.ponteiro.equals(null)){
-            this.ponteiro.setPonteiro(proximo);
+       
+    //Métodos da Interface
+    @Override
+    public void inserir(Venda venda){
+        if(this.ponteiro == null){
+            this.ponteiro.setVenda(venda);
+            this.ponteiro = new RepositorioVendaLista();
         }else{
-            aux = this.ponteiro;
-            inserirCompra(aux);
+            this.ponteiro.inserir(venda);
         }
     }
     
-    public Venda consultarVenda(String nf){
-        RepositorioVendaLista aux;
+    @Override
+    public Venda consultar(String nf) throws NfNaoEncontradaException{
         if(this.venda.getNf().equals(nf)){
             return this.venda;
         }else{
-            aux = this.ponteiro;
-            consultarVenda(aux.venda.getNf());
+            this.ponteiro.consultar(nf);
         }
-        return null;
+        throw new NfNaoEncontradaException(nf);
     }
     
-    public void excluirVenda(RepositorioVendaLista proximo){
-        
-        if(this.ponteiro.getVenda().getNf().equals(proximo.getVenda().getNf())){
-            this.ponteiro.setPonteiro(proximo.getPonteiro());
-            proximo.setPonteiro(null);
-        }else{
-            excluirVenda(this.ponteiro.getPonteiro());
+    @Override
+    public void excluir(String nf){
+       if(this.venda != null){
+            if(this.venda.getNf().equals(nf)){
+                this.venda = this.ponteiro.venda;
+                this.ponteiro = this.ponteiro.ponteiro;
+            }else{
+                this.ponteiro.excluir(nf);
+            }
         }
     }
     
-    public void atualizarVenda(String nf, Venda venda){
-        if(this.ponteiro.getVenda().getNf().equals(nf)){
+    @Override
+    public void atualizar(Venda venda){
+        if(this.ponteiro.getVenda().getNf().equals(venda.getNf())){
             this.ponteiro.setVenda(venda);
         }else{
-            atualizarVenda(nf,this.ponteiro.getPonteiro().getVenda());
+            atualizar(this.ponteiro.getPonteiro().getVenda());
         }
+    }
+    
+    @Override
+    public boolean jaExiste(String nf){
+        if(this.venda.getNf().equals(nf)){
+            return true;
+        }else{
+            this.ponteiro.jaExiste(nf);
+        }
+        return false;
     }
 }
