@@ -19,6 +19,8 @@ public class RepositorioCompraArray {
         this.indice   = 0;
     }
     
+    
+    //Métodos Básicos
     public Compra[] getCompras(){
         return this.compras;
     }
@@ -36,7 +38,7 @@ public class RepositorioCompraArray {
     }
     
     
-    
+    //Métodos da Interface
     public void inserirCompra(Compra compra){
         this.compras[this.indice] = compra;
         this.indice++;

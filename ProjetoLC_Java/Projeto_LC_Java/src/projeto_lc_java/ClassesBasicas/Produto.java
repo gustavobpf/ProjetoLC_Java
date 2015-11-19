@@ -10,21 +10,21 @@ package projeto_lc_java.ClassesBasicas;
  * @author Aluno
  */
 public class Produto {
-    private int             cod;
+    private String          cod;
     private String          descricao;
     private int             qtd;
     private double          preco;
     
     //Construtor de Produto sem parâmetros
     public Produto(){
-        this.cod        = 0;
+        this.cod        = null;
         this.descricao  = null;
         this.qtd        = 0;
         this.preco      = 0;
     }
     
 //Construtor de Produto com todos os parâmetros
-    public Produto(int cod, String descricao, int qtd, double preco,
+    public Produto(String cod, String descricao, int qtd, double preco,
             double desconto){
         this.cod        = cod;
         this.descricao  = descricao;
@@ -35,10 +35,10 @@ public class Produto {
     //Métodos Get's and Set's
     
 //Cod
-    public int getCod(){
+    public String getCod(){
         return this.cod;
     }
-    public void setCod(int cod){
+    public void setCod(String cod){
         this.cod = cod;
     }
     

@@ -15,10 +15,6 @@ public class RepositorioCompraLista {
     private Compra compra;
     private RepositorioCompraLista ponteiro;
     
-    public RepositorioCompraLista(Compra compra){
-        this.compra = compra;
-        this.ponteiro = null;
-    }
     
     public Compra getCompra(){
         return this.compra;
@@ -35,42 +31,42 @@ public class RepositorioCompraLista {
         this.ponteiro = proximo;
     }
           
-    public void inserirCompra(RepositorioCompraLista proximo){
+    public void inserir(RepositorioCompraLista proximo){
         RepositorioCompraLista aux;
         if(this.ponteiro.equals(null)){
             this.ponteiro.setPonteiro(proximo);
         }else{
             aux = this.ponteiro;
-            inserirCompra(aux);
+            inserir(aux);
         }
     }
     
-    public Compra consultarCompra(String nf){
+    public Compra consultar(String nf){
         RepositorioCompraLista aux;
         if(this.compra.getNf().equals(nf)){
             return this.compra;
         }else{
             aux = this.ponteiro;
-            consultarCompra(aux.compra.getNf());
+            consultar(aux.compra.getNf());
         }
         return null;
     }
     
-    public void excluirCompra(RepositorioCompraLista proximo){
+    public void excluir(String nf){
         
-        if(this.ponteiro.getCompra().getNf().equals(proximo.getCompra().getNf())){
+        if(this.ponteiro.getCompra().getNf().equals(nf)){
             this.ponteiro.setPonteiro(proximo.getPonteiro());
             proximo.setPonteiro(null);
         }else{
-            excluirCompra(this.ponteiro.getPonteiro());
+            excluir(this.ponteiro.getPonteiro());
         }
     }
     
-    public void atualizarCompra(String nf, Compra compra){
+    public void atualizar(Compra compra){
         if(this.ponteiro.getCompra().getNf().equals(nf)){
             this.ponteiro.setCompra(compra);
         }else{
-            atualizarCompra(nf,this.ponteiro.getPonteiro().getCompra());
+            atualizar(nf,this.ponteiro.getPonteiro().getCompra());
         }
     }
 }

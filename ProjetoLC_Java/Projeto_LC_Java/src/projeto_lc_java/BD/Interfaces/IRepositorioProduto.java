@@ -14,8 +14,8 @@ import projeto_lc_java.ClassesBasicas.Produto;
  */
 public interface IRepositorioProduto {
     public void inserir(Produto produto);
-    public void excluir(String descricao);
-    public Produto consultar(String descricao);
+    public void excluir(String cod);
+    public Produto consultar(String cod);
     public void atualizar(Produto produto);
     
     public boolean jaExiste(String descricao);

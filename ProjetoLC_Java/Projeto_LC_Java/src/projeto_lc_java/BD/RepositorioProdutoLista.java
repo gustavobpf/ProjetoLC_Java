@@ -42,32 +42,41 @@ public class RepositorioProdutoLista {
         }
     }
     
-    public Produto consultar(String descricao){
-       if(this.produto.getDescricao().equals(descricao)){
+    public Produto consultar(String cod){
+       if(this.produto.getCod().equals(cod)){
             return this.produto;
         }else{
-            this.ponteiro.consultar(descricao);
+            this.ponteiro.consultar(cod);
         }
        return null;
        // throw new ProdutoNaoEncontradoException(descricao);
     }
     
-    public void excluir(String descricao){
+    public void excluir(String cod){
         if(this.produto != null){
-            if(this.produto.getDescricao().equals(descricao)){
+            if(this.produto.getCod().equals(cod)){
                 this.produto = this.ponteiro.produto;
                 this.ponteiro = this.ponteiro.ponteiro;
             }else{
-                this.ponteiro.excluir(descricao);
+                this.ponteiro.excluir(cod);
             }
         }
     }
     
     public void atualizar(Produto produto){
-        if(this.ponteiro.getProduto().getDescricao().equals(produto.getDescricao())){
-            this.ponteiro.setProduto(produto);
+        if(this.produto.getCod().equals(produto.getCod())){
+            this.produto = produto;
         }else{
-            atualizar(this.ponteiro.getPonteiro().getProduto());
+            this.ponteiro.atualizar(produto);
         }
+    }
+    
+    public boolean jaExiste(String cod){
+        if(this.produto.getCod().equals(cod)){
+            return true;
+        }else{
+            this.ponteiro.jaExiste(cod);
+        }
+        return false;
     }
 }
