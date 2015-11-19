@@ -8,13 +8,13 @@ package projeto_lc_java.Exception;
 
 /**
  *
- * @author NATI4
+ * @author ProExC
  */
-public class NfNaoEncontradaException extends Exception{
+public class NfJaCadastradaException extends Exception{
     private String nf;
     
-    public NfNaoEncontradaException(String nf){
-        super("Nota fiscal não encontrada!");
+    public NfJaCadastradaException(String nf){
+        super("Nota fiscal já cadastrada!");
         this.nf = nf;
     }
     
