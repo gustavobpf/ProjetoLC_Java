@@ -9,12 +9,12 @@ package GUI;
  *
  * @author Ana Carolina
  */
-public class Relatorio extends javax.swing.JFrame {
+public class RelatorioTela extends javax.swing.JFrame {
     
-    private static Relatorio instanceRelatorio;
-    public static Relatorio getInstanceRelatorio(){
+    private static RelatorioTela instanceRelatorio;
+    public static RelatorioTela getInstanceRelatorio(){
         if(instanceRelatorio==null)
-            instanceRelatorio = new Relatorio();
+            instanceRelatorio = new RelatorioTela();
         
         return instanceRelatorio;    
     }
@@ -22,7 +22,7 @@ public class Relatorio extends javax.swing.JFrame {
     /**
      * Creates new form Relatorio
      */
-    public Relatorio() {
+    public RelatorioTela() {
         initComponents();
     }
 
@@ -48,9 +48,9 @@ public class Relatorio extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
-        jlVenda.setFont(new java.awt.Font("DigifaceWide", 0, 36)); // NOI18N
-        jlVenda.setForeground(new java.awt.Color(0, 0, 204));
-        jlVenda.setText("Relatorio");
+        jlVenda.setFont(new java.awt.Font("Tempus Sans ITC", 0, 48)); // NOI18N
+        jlVenda.setForeground(new java.awt.Color(255, 51, 0));
+        jlVenda.setText("RELATORIO");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -59,7 +59,7 @@ public class Relatorio extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(158, 158, 158)
                 .addComponent(jlVenda)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -68,6 +68,8 @@ public class Relatorio extends javax.swing.JFrame {
                 .addComponent(jlVenda)
                 .addContainerGap(32, Short.MAX_VALUE))
         );
+
+        jlVenda.getAccessibleContext().setAccessibleName("RELATORIO");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 0));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "RELATORIOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 14), new java.awt.Color(255, 0, 0)))); // NOI18N
@@ -119,7 +121,7 @@ public class Relatorio extends javax.swing.JFrame {
                 .addComponent(jbVenda)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbMenu)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -142,8 +144,8 @@ public class Relatorio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMenuActionPerformed
-        Menu.getInstanceMenu().setVisible(true);
-        Relatorio.getInstanceRelatorio().setVisible(false);
+        MenuTela.getInstanceMenu().setVisible(true);
+        RelatorioTela.getInstanceRelatorio().setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_jbMenuActionPerformed
 
@@ -168,21 +170,23 @@ public class Relatorio extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Relatorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Relatorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Relatorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Relatorio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RelatorioTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Relatorio.getInstanceRelatorio().setVisible(true);
+                RelatorioTela.getInstanceRelatorio().setVisible(true);
                
             }
         });

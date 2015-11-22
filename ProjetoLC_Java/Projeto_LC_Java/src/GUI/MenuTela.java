@@ -1,15 +1,15 @@
 package GUI;
 
-public class Menu extends javax.swing.JFrame {
+public class MenuTela extends javax.swing.JFrame {
     
-    private static Menu instanceMenu;
-    public static Menu getInstanceMenu(){
+    private static MenuTela instanceMenu;
+    public static MenuTela getInstanceMenu(){
         if(instanceMenu==null)
-            instanceMenu=new Menu();
+            instanceMenu=new MenuTela();
             return instanceMenu;
     }
    
-    public Menu() {
+    public MenuTela() {
         initComponents();
     }
 
@@ -179,28 +179,28 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRelatorioActionPerformed
-        Menu.getInstanceMenu().setVisible(false);
-        Relatorio.getInstanceRelatorio().setVisible(true);
+        MenuTela.getInstanceMenu().setVisible(false);
+        RelatorioTela.getInstanceRelatorio().setVisible(true);
     }//GEN-LAST:event_jbRelatorioActionPerformed
 
     private void jbVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbVendaActionPerformed
-        Menu.getInstanceMenu().setVisible(false);
-        Venda.getInstance().setVisible(true);
+        MenuTela.getInstanceMenu().setVisible(false);
+        VendaTela.getInstance().setVisible(true);
     }//GEN-LAST:event_jbVendaActionPerformed
 
     private void jbCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCompraActionPerformed
-        Menu.getInstanceMenu().setVisible(false);
-        Compra.getInstance().setVisible(true);
+        MenuTela.getInstanceMenu().setVisible(false);
+        CompraTela.getInstance().setVisible(true);
     }//GEN-LAST:event_jbCompraActionPerformed
 
     private void jbProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbProdutoActionPerformed
-        Menu.getInstanceMenu().setVisible(false);
-        Produto.getInstance().setVisible(true);
+        MenuTela.getInstanceMenu().setVisible(false);
+        ProdutoTela.getInstance().setVisible(true);
     }//GEN-LAST:event_jbProdutoActionPerformed
 
     private void jbClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbClienteActionPerformed
-        Menu.getInstanceMenu().setVisible(false);
-        Cliente.getInstance().setVisible(true);
+        MenuTela.getInstanceMenu().setVisible(false);
+        ClienteTela.getInstance().setVisible(true);
         
         
     }//GEN-LAST:event_jbClienteActionPerformed
@@ -220,14 +220,16 @@ public class Menu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -235,7 +237,7 @@ public class Menu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                Menu.getInstanceMenu().setVisible(true);
+                MenuTela.getInstanceMenu().setVisible(true);
                 
             }
         });

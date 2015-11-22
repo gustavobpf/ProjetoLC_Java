@@ -1,33 +1,26 @@
 package  GUI;
-import dados.RepositorioClienteFisicoArray;
-import dados.ClienteFisico;
-
-import dados.RepositorioClienteFisicoArray;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
+import projeto_lc_java.ClassesBasicas.Cliente;
+import projeto_lc_java.ClassesBasicas.ClienteFisico;
+import projeto_lc_java.Exception.ClienteJaCadastradoException;
+import projeto_lc_java.Exception.ClienteNaoEncontradoException;
+import projeto_lc_java.Fachada.Fachada;
 
-public class Cliente extends javax.swing.JFrame {
-    private static Cliente instanceClientes;
-    public static Cliente getInstance(){
-        if(instanceClientes==null)
-            instanceClientes = new Cliente();
-            return instanceClientes;
+
+public class ClienteTela extends javax.swing.JFrame {
+    private static ClienteTela instanceClientes;
+    public static ClienteTela getInstance(){
+        if(instanceClientes==null){
+            instanceClientes = new ClienteTela();
         }
-    
-    String nome;
-    String cpf;
-    String idade;
-    String email;
-    String ddd;
-    String telefone;
-    String logradouro;
-    String numero;
-    String cidade;
-    String uf;
-    String bairro;
-    String cep;
+            return instanceClientes;
+    }
+   
     private final ButtonGroup grupo = new ButtonGroup();
-            public Cliente() {
+            public ClienteTela() {
         initComponents();
         grupo.add(jrFisico);
         grupo.add(jrJuridico);
@@ -133,22 +126,21 @@ public class Cliente extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtNome))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel4))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtNome)))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -170,7 +162,7 @@ public class Cliente extends javax.swing.JFrame {
                         .addComponent(jrFisico)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jrJuridico)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jtCpf, jtEmail, jtNome});
@@ -389,6 +381,7 @@ public class Cliente extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jrJuridicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrJuridicoActionPerformed
@@ -400,33 +393,49 @@ public class Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jrFisicoActionPerformed
 
     private void jbInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbInserirActionPerformed
-        RepositorioClienteFisicoArray repCliente = new RepositorioClienteFisicoArray();
-        ClienteFisico cliente = new ClienteFisico();
-        
-        cliente.setNome(jtNome.getText());
-        cliente.setCpf(jtCpf.getText());
-        cliente.setIdade(jtIdade.getText());
-        cliente.setEmail(jtEmail.getText());
-        cliente.setDdd(jtDdd.getText());
-        cliente.setFone(jtTelefone.getText());
-        cliente.setLogradouro(jtLogradouro.getText());
-        cliente.getNumero(jtNumero.getText());
-        cliente.setCidade(jtCidade.getText());
-        cliente.setUf(jtUf.getText());
-        cliente.setBairro(jtBairro.getText());
-        cliente.setCep(jtCep.getText());
-        
-        
-        
-        JOptionPane.showMessageDialog(rootPane,"Escrevi: "+ nome);
+            ClienteFisico clientef = new ClienteFisico();
+            clientef.setNome(jtNome.getText());
+            clientef.setCpf(jtCpf.getText());
+            clientef.setCelular(jtTelefone.getText());
+            clientef.setDdd(jtDdd.getText());
+            clientef.setEmail(jtEmail.getText());
+            clientef.setEndereco(jtLogradouro.getText());
+                    try {
+            Fachada.getInstance().cadastrarCliente(clientef);
+        } catch (ClienteJaCadastradoException ex) {
+            Logger.getLogger(ClienteTela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{JOptionPane.showMessageDialog(rootPane,"Arquivo inserido com sucesso!!! ");
+        }
     }//GEN-LAST:event_jbInserirActionPerformed
 
     private void jbProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbProcurarActionPerformed
-        JOptionPane.showMessageDialog(rootPane,"Busca efetuada com Sucesso");
+            String cpf = jtCpf.getText();
+            Fachada f =  Fachada.getInstance();
+                       
+        try {
+          ClienteFisico cli =  f.consultarCliente(cpf);
+          cli.setNome(jtNome.getText());
+          cli.setCpf(jtCpf.getText());
+          jtEmail.setText("Campos sendo Inseridos ok");
+          
+                  } catch (ClienteNaoEncontradoException ex) {
+            Logger.getLogger(ClienteTela.class.getName()).log(Level.SEVERE, null, ex);
+                    
+                    }
+                    finally{ JOptionPane.showMessageDialog(rootPane,"Busca efetuada com Sucesso");
+                            }
     }//GEN-LAST:event_jbProcurarActionPerformed
-
+    
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-        JOptionPane.showMessageDialog(rootPane,"Arquivo Modificado com Sucesso");
+        Fachada f = Fachada.getInstance();
+        String cpf = jtCpf.getText();
+        try {
+            ClienteFisico cli = f.consultarCliente(cpf);
+        } catch (ClienteNaoEncontradoException ex) {
+            Logger.getLogger(ClienteTela.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{JOptionPane.showMessageDialog(rootPane,"Arquivo Modificado com Sucesso");}
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jbDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDeletarActionPerformed
@@ -434,8 +443,8 @@ public class Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jbDeletarActionPerformed
 
     private void jbMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMenuActionPerformed
-        gui.Menu.getInstanceMenu().setVisible(true);
-            Cliente.getInstance().setVisible(false);
+       GUI.MenuTela.getInstanceMenu().setVisible(true);
+            ClienteTela.getInstance().setVisible(false);
             
     }//GEN-LAST:event_jbMenuActionPerformed
 
@@ -447,15 +456,17 @@ public class Cliente extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        gui.Menu.getInstanceMenu().setVisible(false);
-        Cliente.getInstance().setVisible(true);
+       GUI.MenuTela.getInstanceMenu().setVisible(false);
+        ClienteTela.getInstance().setVisible(true);
+        Fachada.getInstance();
+
         
         
         
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Cliente().setVisible(true);
+                new ClienteTela().setVisible(true);
             }
         });
     }
