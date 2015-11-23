@@ -49,16 +49,23 @@ public class ControleClienteJuridico {
     }
     
     public void modificar(ClienteJuridico cliente) throws ClienteNaoEncontradoException {
-        if(this.clientes.jaExiste(cliente.getCnpj())){
-            this.clientes.atualizar(cliente);
-        }else{
-            throw new ClienteNaoEncontradoException(cliente.getCnpj());
+         if(cliente.getCnpj() != null || cliente.getCnpj() != "" || 
+           cliente.getCnpj() != " "){
+            if(!this.clientes.jaExiste(cliente.getCnpj())){
+                this.clientes.atualizar(cliente);
+            }else{
+                throw new ClienteNaoEncontradoException(cliente.getCnpj());
+            }
         }
     }
     
     public ClienteJuridico procurar(String cnpj) throws ClienteNaoEncontradoException {
-        if(this.clientes.jaExiste(cnpj)){
-            return this.clientes.consultar(cnpj);
+        if(cnpj != null || cnpj != "" || cnpj != " "){
+            if(this.clientes.jaExiste(cnpj)){
+                return this.clientes.consultar(cnpj);
+            }else{
+                throw new ClienteNaoEncontradoException(cnpj);
+            }
         }else{
             throw new ClienteNaoEncontradoException(cnpj);
         }
