@@ -16,7 +16,7 @@ import projeto_lc_java.Exception.ProdutoNaoEncontradoException;
 public interface IRepositorioProduto {
     public void inserir(Produto produto);
     public void excluir(String cod);
-    public Produto consultar(String cod) throws ProdutoNaoEncontradoException;;
+    public Produto consultar(String cod) throws ProdutoNaoEncontradoException;
     public void atualizar(Produto produto);
     
     public boolean jaExiste(String descricao);
