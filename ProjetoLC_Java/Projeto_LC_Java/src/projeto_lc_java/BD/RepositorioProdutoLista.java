@@ -6,12 +6,14 @@
 
 package projeto_lc_java.BD;
 
+import projeto_lc_java.BD.Interfaces.IRepositorioProduto;
 import projeto_lc_java.ClassesBasicas.Produto;
+import projeto_lc_java.Exception.ProdutoNaoEncontradoException;
 /**
  *
  * @author Andressa
  */
-public class RepositorioProdutoLista {
+public class RepositorioProdutoLista implements IRepositorioProduto{
     private Produto produto;
     private RepositorioProdutoLista ponteiro;
     
@@ -33,6 +35,7 @@ public class RepositorioProdutoLista {
     
     
     //Métodos da Interface
+    @Override
     public void inserir(Produto produto){
         if(this.ponteiro == null){
             this.ponteiro.setProduto(produto);
@@ -42,16 +45,18 @@ public class RepositorioProdutoLista {
         }
     }
     
-    public Produto consultar(String cod){
+    @Override
+    public Produto consultar(String cod) throws ProdutoNaoEncontradoException{
        if(this.produto.getCod().equals(cod)){
             return this.produto;
         }else{
             this.ponteiro.consultar(cod);
         }
-       return null;
-       // throw new ProdutoNaoEncontradoException(descricao);
+       throw new ProdutoNaoEncontradoException(cod);
+       // ;
     }
     
+    @Override
     public void excluir(String cod){
         if(this.produto != null){
             if(this.produto.getCod().equals(cod)){
@@ -63,6 +68,7 @@ public class RepositorioProdutoLista {
         }
     }
     
+    @Override
     public void atualizar(Produto produto){
         if(this.produto.getCod().equals(produto.getCod())){
             this.produto = produto;
@@ -71,6 +77,7 @@ public class RepositorioProdutoLista {
         }
     }
     
+    @Override
     public boolean jaExiste(String cod){
         if(this.produto.getCod().equals(cod)){
             return true;

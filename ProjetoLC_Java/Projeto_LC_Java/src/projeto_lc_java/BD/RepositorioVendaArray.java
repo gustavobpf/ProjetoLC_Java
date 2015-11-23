@@ -5,8 +5,9 @@
  */
 
 package projeto_lc_java.BD;
-import projeto_lc_java.ClassesBasicas.Venda;
 import projeto_lc_java.BD.Interfaces.IRepositorioVenda;
+import projeto_lc_java.ClassesBasicas.Venda;
+import projeto_lc_java.Exception.NfNaoEncontradaException;
 
 /**
  *
@@ -61,13 +62,13 @@ public class RepositorioVendaArray implements IRepositorioVenda{
     }
     
     @Override
-    public Venda consultar(String nf){
+    public Venda consultar(String nf) throws NfNaoEncontradaException{
         for(int i=0;i<this.indice;i++){
             if(this.vendas[i].getNf().equals(nf)){
                 return this.vendas[i];
             }
         }
-        return null;
+        throw new NfNaoEncontradaException(nf);
     }
     
     @Override

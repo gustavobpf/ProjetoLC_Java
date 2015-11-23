@@ -5,8 +5,9 @@
  */
 package projeto_lc_java.BD;
 
-import projeto_lc_java.ClassesBasicas.Produto;
 import projeto_lc_java.BD.Interfaces.IRepositorioProduto;
+import projeto_lc_java.ClassesBasicas.Produto;
+import projeto_lc_java.Exception.ProdutoNaoEncontradoException;
 /**
  *
  * @author Ana Carolina
@@ -36,11 +37,13 @@ public class RepositorioProdutoArray implements IRepositorioProduto{
     }
     
     //Métodos da Interface
+    @Override
     public void inserir(Produto produto){
         this.produto[this.indice] = produto;
         this.indice++;
     }
     
+    @Override
     public void excluir(String cod){
         Produto aux[] = new Produto[100];
         int j=0;
@@ -53,15 +56,17 @@ public class RepositorioProdutoArray implements IRepositorioProduto{
         this.produto = aux;
     }
     
-    public Produto consultar(String cod){
+    @Override
+    public Produto consultar(String cod) throws ProdutoNaoEncontradoException{
         for(int i=0;i<this.indice;i++){
             if(this.produto[i].getDescricao().equals(cod)){
                 return this.produto[i];
             }
         }
-        return null;
+        throw new ProdutoNaoEncontradoException(cod);
     }
     
+    @Override
     public void atualizar(Produto produto){
         for(int i=0; i<this.indice;i++){
             if(this.produto[i].getCod().equals(produto.getCod())){
@@ -70,6 +75,7 @@ public class RepositorioProdutoArray implements IRepositorioProduto{
         }
     }
     
+    @Override
     public boolean jaExiste(String cod){
         for(int i=0;i<this.indice;i++){
             if(this.produto[i].getCod().equals(cod)){
