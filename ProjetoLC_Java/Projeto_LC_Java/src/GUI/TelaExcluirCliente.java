@@ -265,13 +265,14 @@ public class TelaExcluirCliente extends javax.swing.JFrame {
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
         Fachada f = new Fachada();
         ClienteFisico cli = new ClienteFisico();
+        
         try {
-            f.removerCliente(jtCpfCnpj.getText());
-            
-            
+                        f.removerCliente(jtCpfCnpj.getText());
+                        JOptionPane.showMessageDialog(null, "Cliente Excluido com Sucesso");
             
         } catch (ClienteNaoEncontradoException ex) {
             Logger.getLogger(TelaExcluirCliente.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,"Dados nao encontrados para exclusao" );
         }
         
     

@@ -16,18 +16,18 @@ import projeto_lc_java.Fachada.Fachada;
  *
  * @author Ana Carolina
  */
-public class ProdutoTela extends javax.swing.JFrame {
+public class TelaEstoqueProduto extends javax.swing.JFrame {
     
-     private static ProdutoTela instanceProduto;
-	 public static ProdutoTela getInstance(){
+     private static TelaEstoqueProduto instanceProduto;
+	 public static TelaEstoqueProduto getInstance(){
 		if(instanceProduto == null)
-			instanceProduto = new ProdutoTela();
+			instanceProduto = new TelaEstoqueProduto();
 		return instanceProduto;
         /**
         * Creates new form PRODUTO
         */
          }
-                public ProdutoTela() {
+                public TelaEstoqueProduto() {
         initComponents();
                 }  
 
@@ -55,6 +55,9 @@ public class ProdutoTela extends javax.swing.JFrame {
         jcTipo = new javax.swing.JComboBox();
         jbCadastrar = new javax.swing.JButton();
         jbMenu = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jtQuantidade = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("CADASTRO DE PRODUTO");
@@ -63,14 +66,14 @@ public class ProdutoTela extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tempus Sans ITC", 0, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 51, 0));
-        jLabel3.setText("PRODUTO");
+        jLabel3.setText("ESTOQUE PRODUTO");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(165, 165, 165)
+                .addGap(78, 78, 78)
                 .addComponent(jLabel3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -125,6 +128,11 @@ public class ProdutoTela extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setText("QUANT");
+
+        jLabel8.setText("este campo esta sem ligacoes no momento");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -136,21 +144,25 @@ public class ProdutoTela extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(142, 142, 142))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtReferencia, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jtPreco, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jcTipo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jtPreco, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jcTipo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtQuantidade, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel8))
                             .addComponent(jtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jbCadastrar)
@@ -158,7 +170,7 @@ public class ProdutoTela extends javax.swing.JFrame {
                         .addComponent(jbProcurar)
                         .addGap(18, 18, 18)
                         .addComponent(jbMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,7 +193,12 @@ public class ProdutoTela extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(44, 44, 44)
+                .addGap(15, 15, 15)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8))
+                .addGap(73, 73, 73)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbCadastrar)
                     .addComponent(jbProcurar)
@@ -193,8 +210,8 @@ public class ProdutoTela extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,7 +231,7 @@ public class ProdutoTela extends javax.swing.JFrame {
 
     private void jbMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMenuActionPerformed
         MenuTela.getInstanceMenu().setVisible(true);
-        ProdutoTela.getInstance().setVisible(false);
+        TelaEstoqueProduto.getInstance().setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_jbMenuActionPerformed
 
@@ -225,7 +242,7 @@ public class ProdutoTela extends javax.swing.JFrame {
              f.cadastrarProduto(prod);
              JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!");
          } catch (ProdutoJaCadastradoException ex) {
-             Logger.getLogger(ProdutoTela.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(TelaEstoqueProduto.class.getName()).log(Level.SEVERE, null, ex);
              JOptionPane.showMessageDialog(null, "Problemas no cadastro do produto");
              
          }
@@ -253,14 +270,22 @@ public class ProdutoTela extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProdutoTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEstoqueProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProdutoTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEstoqueProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProdutoTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEstoqueProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProdutoTela.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaEstoqueProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -275,7 +300,7 @@ public class ProdutoTela extends javax.swing.JFrame {
             @Override
             public void run() {
                 
-                ProdutoTela.getInstance().setVisible(true);
+                TelaEstoqueProduto.getInstance().setVisible(true);
                 MenuTela.getInstanceMenu().setVisible(false);
                 
                 
@@ -291,6 +316,8 @@ public class ProdutoTela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jbCadastrar;
@@ -299,6 +326,7 @@ public class ProdutoTela extends javax.swing.JFrame {
     private javax.swing.JComboBox jcTipo;
     private javax.swing.JTextField jtDescricao;
     private javax.swing.JTextField jtPreco;
+    private javax.swing.JTextField jtQuantidade;
     private javax.swing.JTextField jtReferencia;
     // End of variables declaration//GEN-END:variables
 }

@@ -114,7 +114,11 @@ public AvisoConfirmaTela() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbOkActionPerformed
+        
         AvisoConfirmaTela.getInstance().setVisible(false);
+        TelaExcluirCliente.getInstance().setVisible(true);
+        
+        
         
     }//GEN-LAST:event_jbOkActionPerformed
 
