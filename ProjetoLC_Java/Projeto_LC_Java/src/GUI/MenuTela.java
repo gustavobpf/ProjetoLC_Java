@@ -200,7 +200,7 @@ public class MenuTela extends javax.swing.JFrame {
 
     private void jbClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbClienteActionPerformed
         MenuTela.getInstanceMenu().setVisible(false);
-        ClienteTela.getInstance().setVisible(true);
+        TelaCliente.getInstance().setVisible(true);
         
         
     }//GEN-LAST:event_jbClienteActionPerformed
