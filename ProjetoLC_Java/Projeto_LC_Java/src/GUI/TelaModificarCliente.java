@@ -16,12 +16,12 @@ import projeto_lc_java.Fachada.Fachada;
  *
  * @author Ana Carolina
  */
-public class TelaProcurar extends javax.swing.JFrame {
-    private static TelaProcurar instanceTelaProcurar;
-    public static TelaProcurar getInstance(){
+public class TelaModificarCliente extends javax.swing.JFrame {
+    private static TelaModificarCliente instanceTelaProcurar;
+    public static TelaModificarCliente getInstance(){
         
         if(instanceTelaProcurar == null){
-            instanceTelaProcurar = new TelaProcurar();
+            instanceTelaProcurar = new TelaModificarCliente();
         }
         return instanceTelaProcurar;
         }
@@ -30,7 +30,7 @@ public class TelaProcurar extends javax.swing.JFrame {
     /**
      * Creates new form TelaProcurar
      */
-    public TelaProcurar() {
+    public TelaModificarCliente() {
         initComponents();
     }
 
@@ -75,7 +75,7 @@ public class TelaProcurar extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("Tempus Sans ITC", 1, 48)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel16.setText("PROCURAR CLIENTE");
+        jLabel16.setText("MODIFICAR CLIENTE");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -271,7 +271,7 @@ public class TelaProcurar extends javax.swing.JFrame {
             
             
         } catch (ClienteNaoEncontradoException ex) {
-            Logger.getLogger(TelaProcurar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaModificarCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     
@@ -292,7 +292,7 @@ public class TelaProcurar extends javax.swing.JFrame {
             jtRg.setText(cli.getRg());
             jtCelular.setText(cli.getCelular());
         } catch (ClienteNaoEncontradoException ex) {
-           Logger.getLogger(TelaProcurar.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(TelaModificarCliente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Cliente Não encontrado ");
         }
     }//GEN-LAST:event_jtCpfCnpjActionPerformed
@@ -307,7 +307,7 @@ public class TelaProcurar extends javax.swing.JFrame {
 
     private void jbMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMenuActionPerformed
         MenuTela.getInstanceMenu().setVisible(true);
-        TelaProcurar.getInstance().setVisible(false);
+        TelaModificarCliente.getInstance().setVisible(false);
                 
 
     }//GEN-LAST:event_jbMenuActionPerformed
@@ -329,20 +329,23 @@ public class TelaProcurar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaProcurar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaModificarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaProcurar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaModificarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaProcurar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaModificarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaProcurar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaModificarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaProcurar().setVisible(true);
+                new TelaModificarCliente().setVisible(true);
             }
         });
     }

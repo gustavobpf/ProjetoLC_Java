@@ -16,12 +16,12 @@ import projeto_lc_java.Fachada.Fachada;
  *
  * @author Ana Carolina
  */
-public class TelaProcurar extends javax.swing.JFrame {
-    private static TelaProcurar instanceTelaProcurar;
-    public static TelaProcurar getInstance(){
+public class TelaExcluirCliente extends javax.swing.JFrame {
+    private static TelaExcluirCliente instanceTelaProcurar;
+    public static TelaExcluirCliente getInstance(){
         
         if(instanceTelaProcurar == null){
-            instanceTelaProcurar = new TelaProcurar();
+            instanceTelaProcurar = new TelaExcluirCliente();
         }
         return instanceTelaProcurar;
         }
@@ -30,7 +30,7 @@ public class TelaProcurar extends javax.swing.JFrame {
     /**
      * Creates new form TelaProcurar
      */
-    public TelaProcurar() {
+    public TelaExcluirCliente() {
         initComponents();
     }
 
@@ -48,7 +48,7 @@ public class TelaProcurar extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jtCpfCnpj = new javax.swing.JTextField();
-        jbProcurar = new javax.swing.JButton();
+        jbExcluir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jtNome = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -75,7 +75,7 @@ public class TelaProcurar extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("Tempus Sans ITC", 1, 48)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel16.setText("PROCURAR CLIENTE");
+        jLabel16.setText("EXCLUIR CLIENTE");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -105,10 +105,10 @@ public class TelaProcurar extends javax.swing.JFrame {
             }
         });
 
-        jbProcurar.setText("PROCURAR");
-        jbProcurar.addActionListener(new java.awt.event.ActionListener() {
+        jbExcluir.setText("EXCLUIR");
+        jbExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbProcurarActionPerformed(evt);
+                jbExcluirActionPerformed(evt);
             }
         });
 
@@ -184,7 +184,7 @@ public class TelaProcurar extends javax.swing.JFrame {
                             .addComponent(jtCpfCnpj1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtDdd, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jbProcurar)
+                                .addComponent(jbExcluir)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jbMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(171, 171, 171))
@@ -236,7 +236,7 @@ public class TelaProcurar extends javax.swing.JFrame {
                         .addComponent(jLabel8)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbProcurar)
+                    .addComponent(jbExcluir)
                     .addComponent(jbMenu))
                 .addContainerGap())
         );
@@ -262,20 +262,20 @@ public class TelaProcurar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbProcurarActionPerformed
+    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
         Fachada f = new Fachada();
         ClienteFisico cli = new ClienteFisico();
         try {
-            f.consultarCliente(jtCpfCnpj.getText());
+            f.removerCliente(jtCpfCnpj.getText());
             
             
             
         } catch (ClienteNaoEncontradoException ex) {
-            Logger.getLogger(TelaProcurar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaExcluirCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     
-    }//GEN-LAST:event_jbProcurarActionPerformed
+    }//GEN-LAST:event_jbExcluirActionPerformed
 
     private void jtCpfCnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCpfCnpjActionPerformed
        Fachada f = new Fachada();
@@ -292,7 +292,7 @@ public class TelaProcurar extends javax.swing.JFrame {
             jtRg.setText(cli.getRg());
             jtCelular.setText(cli.getCelular());
         } catch (ClienteNaoEncontradoException ex) {
-           Logger.getLogger(TelaProcurar.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(TelaExcluirCliente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Cliente Não encontrado ");
         }
     }//GEN-LAST:event_jtCpfCnpjActionPerformed
@@ -307,7 +307,7 @@ public class TelaProcurar extends javax.swing.JFrame {
 
     private void jbMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMenuActionPerformed
         MenuTela.getInstanceMenu().setVisible(true);
-        TelaProcurar.getInstance().setVisible(false);
+        TelaExcluirCliente.getInstance().setVisible(false);
                 
 
     }//GEN-LAST:event_jbMenuActionPerformed
@@ -329,20 +329,23 @@ public class TelaProcurar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaProcurar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaExcluirCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaProcurar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaExcluirCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaProcurar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaExcluirCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaProcurar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaExcluirCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaProcurar().setVisible(true);
+                new TelaExcluirCliente().setVisible(true);
             }
         });
     }
@@ -360,8 +363,8 @@ public class TelaProcurar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton jbExcluir;
     private javax.swing.JButton jbMenu;
-    private javax.swing.JButton jbProcurar;
     private javax.swing.JTextField jtCelular;
     private javax.swing.JTextField jtCpfCnpj;
     private javax.swing.JTextField jtCpfCnpj1;

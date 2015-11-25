@@ -63,7 +63,6 @@ public class TelaCliente extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jtCelular = new javax.swing.JTextField();
-        jbFechar = new javax.swing.JButton();
         jbMenu = new javax.swing.JButton();
         jbCadastrar = new javax.swing.JButton();
         jbProcurar = new javax.swing.JButton();
@@ -120,13 +119,6 @@ public class TelaCliente extends javax.swing.JFrame {
 
         jLabel8.setText("CELULAR: ");
 
-        jbFechar.setText("FECHAR");
-        jbFechar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbFecharActionPerformed(evt);
-            }
-        });
-
         jbMenu.setText("MENU");
         jbMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,9 +161,7 @@ public class TelaCliente extends javax.swing.JFrame {
                         .addGap(6, 6, 6)
                         .addComponent(jbProcurar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)
-                        .addComponent(jbMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
-                        .addComponent(jbFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jbMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,8 +245,7 @@ public class TelaCliente extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jbCadastrar)
                     .addComponent(jbProcurar)
-                    .addComponent(jbMenu)
-                    .addComponent(jbFechar))
+                    .addComponent(jbMenu))
                 .addContainerGap(55, Short.MAX_VALUE))
         );
 
@@ -285,10 +274,6 @@ public class TelaCliente extends javax.swing.JFrame {
     private void jtEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtEnderecoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtEnderecoActionPerformed
-
-    private void jbFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFecharActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbFecharActionPerformed
 
     private void jbCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCadastrarActionPerformed
        Fachada f = new Fachada();
@@ -379,7 +364,6 @@ public class TelaCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jbCadastrar;
-    private javax.swing.JButton jbFechar;
     private javax.swing.JButton jbMenu;
     private javax.swing.JButton jbProcurar;
     private javax.swing.JTextField jtCelular;
