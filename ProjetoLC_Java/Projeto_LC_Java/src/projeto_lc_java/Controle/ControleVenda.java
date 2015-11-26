@@ -31,7 +31,7 @@ public class ControleVenda {
     public void cadastrar(Venda venda) throws NfJaCadastradaException {
         if(venda.getNf() != null || venda.getNf() != "" || 
            venda.getNf() != " "){
-            
+           
             
             if(!this.vendas.jaExiste(venda.getNf())){
                 this.vendas.inserir(venda);

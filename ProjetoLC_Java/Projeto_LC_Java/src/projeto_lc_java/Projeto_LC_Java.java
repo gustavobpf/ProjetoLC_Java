@@ -94,10 +94,14 @@ public class Projeto_LC_Java {
        produto[2] = produto02;
        produto[3] = produto03;
        
+       
+       
        compra.setCliente(clientef);
        compra.setData("2015/11/25");
        compra.setNf("000");
        compra.setProduto(produto);
+       
+       
        
        venda.setCliente(clientej);
        venda.setData("2015/11/26");
@@ -124,6 +128,8 @@ public class Projeto_LC_Java {
        }catch (ProdutoJaCadastradoException ex){
            ex.getMessage();
        }
+       
+       
 /*
        try{
            fachada.cadastrarCompra(compra);

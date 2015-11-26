@@ -151,6 +151,7 @@ public class Fachada {
      
      //Vendas
      public void cadastrarVenda(Venda venda) throws NfJaCadastradaException{
+        
         this.vendas.cadastrar(venda);
      }
      

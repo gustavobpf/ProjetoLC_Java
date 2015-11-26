@@ -6,8 +6,11 @@
 
 package projeto_lc_java.Controle;
 //Interfaces e Classes Básicas
-import projeto_lc_java.BD.Interfaces.IRepositorioCompra;
+
 import projeto_lc_java.ClassesBasicas.Compra;
+import projeto_lc_java.ClassesBasicas.Produto;
+import projeto_lc_java.BD.Interfaces.IRepositorioProduto;
+import projeto_lc_java.BD.Interfaces.IRepositorioCompra;
 
 //Exccptions
 import projeto_lc_java.Exception.NfJaCadastradaException;
@@ -19,6 +22,7 @@ import projeto_lc_java.Exception.NfNaoEncontradaException;
  */
 public class ControleCompra {
     private IRepositorioCompra compras;
+    private IRepositorioProduto produtos;
      
     public ControleCompra(IRepositorioCompra compras){
         this.compras = compras;
@@ -31,7 +35,9 @@ public class ControleCompra {
     public void cadastrar(Compra compra) throws NfJaCadastradaException {
         if(compra.getNf() != null || compra.getNf() != "" || 
            compra.getNf() != " "){
-             if(!this.compras.jaExiste(compra.getNf())){
+            
+            
+            if(!this.compras.jaExiste(compra.getNf())){
                 this.compras.inserir(compra);
             }else{
                 throw new NfJaCadastradaException(compra.getNf());
