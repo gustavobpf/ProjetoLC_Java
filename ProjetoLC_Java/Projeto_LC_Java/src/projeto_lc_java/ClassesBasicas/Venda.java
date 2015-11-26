@@ -12,7 +12,7 @@ package projeto_lc_java.ClassesBasicas;
 public class Venda {
     private String nf;
     private String data;
-    private Produto produto;
+    private Produto produto[];
     private Cliente cliente;
     
     
@@ -21,7 +21,7 @@ public class Venda {
         this.cliente = null;
     }
     //Construtor de Venda com todos os parâmetros
-    public Venda(String nf, String data, Produto produto, Cliente cliente){
+    public Venda(String nf, String data, Produto produto[], Cliente cliente){
         this.nf      = nf;
         this.data    = data;
         this.produto = produto;
@@ -47,10 +47,10 @@ public class Venda {
     }
     
 //Produto da Venda (Venda)
-    public Produto getProduto(){
+    public Produto[] getProduto(){
         return this.produto;
     }
-    public void setProduto(Produto produto){
+    public void setProduto(Produto produto[]){
         this.produto = produto;
     }
     

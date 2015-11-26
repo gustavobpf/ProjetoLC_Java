@@ -7,6 +7,7 @@
 package projeto_lc_java.Controle;
 import projeto_lc_java.ClassesBasicas.Venda;
 import projeto_lc_java.BD.Interfaces.IRepositorioVenda;
+import projeto_lc_java.BD.RepositorioProdutoArray;
 
 import projeto_lc_java.Exception.NfJaCadastradaException;
 import projeto_lc_java.Exception.NfNaoEncontradaException;
@@ -17,6 +18,7 @@ import projeto_lc_java.Exception.NfNaoEncontradaException;
  */
 public class ControleVenda {
     private IRepositorioVenda vendas;
+    
      
     public ControleVenda(IRepositorioVenda vendas){
         this.vendas = vendas;
@@ -29,7 +31,9 @@ public class ControleVenda {
     public void cadastrar(Venda venda) throws NfJaCadastradaException {
         if(venda.getNf() != null || venda.getNf() != "" || 
            venda.getNf() != " "){
-             if(!this.vendas.jaExiste(venda.getNf())){
+            
+            
+            if(!this.vendas.jaExiste(venda.getNf())){
                 this.vendas.inserir(venda);
             }else{
                 throw new NfJaCadastradaException(venda.getNf());

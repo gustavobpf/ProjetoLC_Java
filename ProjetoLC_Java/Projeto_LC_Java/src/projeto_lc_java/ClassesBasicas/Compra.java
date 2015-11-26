@@ -14,7 +14,7 @@ import java.util.Date;
 public class Compra {
     private String nf;
     private String data;
-    private Produto produto;
+    private Produto produto[];
     private Cliente cliente;
 
     //Construtor de Transacao sem os parâmetros
@@ -25,7 +25,7 @@ public class Compra {
         this.cliente = null;
     }
     //Construtor de Compra com todos os parâmetros
-    public Compra(String nf, String data, Produto produto, Cliente cliente){
+    public Compra(String nf, String data, Produto produto[], Cliente cliente){
         this.nf      = nf;
         this.data    = data;
         this.produto = produto;
@@ -51,10 +51,10 @@ public class Compra {
     }
     
 //Produto da Compra (Compra)
-    public Produto getProduto(){
+    public Produto[] getProduto(){
         return this.produto;
     }
-    public void setProduto(Produto produto){
+    public void setProduto(Produto produto[]){
         this.produto = produto;
     }
     
