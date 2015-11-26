@@ -73,6 +73,7 @@ public class Fachada {
      }
      
      
+     
      public static Fachada getInstance()  {
         if (Fachada.instance == null) {
             Fachada.instance = new Fachada();
@@ -93,8 +94,8 @@ public class Fachada {
         this.clientes.modificar(cliente);
      }
      
-     public void consultarCliente(String cpf) throws ClienteNaoEncontradoException{
-        this.clientes.procurar(cpf);
+     public ClienteFisico consultarCliente(String cpf) throws ClienteNaoEncontradoException{
+        return this.clientes.procurar(cpf);
      }
    
     
@@ -111,8 +112,8 @@ public class Fachada {
         this.clientesj.modificar(cliente);
      }
      
-     public void consultarClienteJ(String cpf) throws ClienteNaoEncontradoException{
-        this.clientesj.procurar(cpf);
+     public ClienteJuridico consultarClienteJ(String cpf) throws ClienteNaoEncontradoException{
+        return this.clientesj.procurar(cpf);
      }
      
      //Produtos
@@ -128,8 +129,8 @@ public class Fachada {
         this.produtos.modificar(produto);
      }
      
-     public void consultarProduto(String cod) throws ProdutoNaoEncontradoException{
-        this.produtos.procurar(cod);
+     public Produto consultarProduto(String cod) throws ProdutoNaoEncontradoException{
+        return this.produtos.procurar(cod);
      }
      
      //Compras
@@ -145,8 +146,8 @@ public class Fachada {
         this.compras.modificar(compra);
      }
      
-     public void consultarCompra(String nf) throws NfNaoEncontradaException{
-        this.compras.procurar(nf);
+     public Compra consultarCompra(String nf) throws NfNaoEncontradaException{
+        return this.compras.procurar(nf);
      }
      
      //Vendas
@@ -163,7 +164,7 @@ public class Fachada {
         this.vendas.modificar(venda);
      }
      
-     public void consultarVenda(String nf) throws NfNaoEncontradaException{
-        this.vendas.procurar(nf);
+     public Venda consultarVenda(String nf) throws NfNaoEncontradaException{
+       return this.vendas.procurar(nf);
      }
 }

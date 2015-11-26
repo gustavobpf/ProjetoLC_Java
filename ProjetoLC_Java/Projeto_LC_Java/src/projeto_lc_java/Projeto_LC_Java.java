@@ -18,7 +18,10 @@ import projeto_lc_java.ClassesBasicas.Produto;
 import projeto_lc_java.ClassesBasicas.Venda;
 import projeto_lc_java.Exception.ClienteJaCadastradoException;
 import projeto_lc_java.Exception.ClienteNaoEncontradoException;
+import projeto_lc_java.Exception.NfJaCadastradaException;
+import projeto_lc_java.Exception.NfNaoEncontradaException;
 import projeto_lc_java.Exception.ProdutoJaCadastradoException;
+import projeto_lc_java.Exception.ProdutoNaoEncontradoException;
 import projeto_lc_java.Fachada.Fachada;
 /**
  *
@@ -83,11 +86,6 @@ public class Projeto_LC_Java {
        produto03.setPreco(12);
        produto03.setQtd(88);
        
-       produto03.setCod("04");
-       produto03.setDescricao("Produto 04");
-       produto03.setPreco(28.80);
-       produto03.setQtd(31);
-       
              
        produto[0] = produto00;
        produto[1] = produto01;
@@ -101,41 +99,248 @@ public class Projeto_LC_Java {
        compra.setNf("000");
        compra.setProduto(produto);
        
+        
        
-       
+
        venda.setCliente(clientej);
        venda.setData("2015/11/26");
        venda.setNf("000");
        venda.setProduto(produto);
-      
+    
+       
+       
+    //ClienteFisico   
+       //CadastrarCliente
        try{
-            fachada.cadastrarCliente(clientef);
+           Fachada.getInstance().cadastrarCliente(clientef);
        }catch (ClienteJaCadastradoException ex){
            ex.getMessage();
        }
        
+       //ConsultarCliente
        try{
-           fachada.cadastrarClienteJ(clientej);
-       }catch (ClienteJaCadastradoException ex){
+           Fachada.getInstance().consultarCliente(clientef.getCpf());
+       }catch(ClienteNaoEncontradoException ex){
            ex.getMessage();
        }
        
+       //AtualizarCliente
        try{
-           fachada.cadastrarProduto(produto00);
-           fachada.cadastrarProduto(produto01);
-           fachada.cadastrarProduto(produto02);
-           fachada.cadastrarProduto(produto03);
+           Fachada.getInstance().atualizarCliente(clientef);
+       }catch(ClienteNaoEncontradoException ex){
+           ex.getMessage();
+       }
+       
+       //RemoverCliente
+       try{
+           Fachada.getInstance().removerCliente(clientef.getCpf());
+       }catch(ClienteNaoEncontradoException ex){
+           ex.getMessage();
+       }
+       
+    //ClienteJuridico
+       //CadastrarCliente
+       try{
+           Fachada.getInstance().cadastrarClienteJ(clientej);
+       }catch (ClienteJaCadastradoException ex){
+           ex.getMessage();
+       }
+       //ConsultarCliente
+       try{
+           Fachada.getInstance().consultarClienteJ(clientej.getCnpj());
+       }catch(ClienteNaoEncontradoException ex){
+           ex.getMessage();
+       }
+       
+       //AtualizarCliente
+       try{
+           Fachada.getInstance().atualizarClienteJ(clientej);
+       }catch(ClienteNaoEncontradoException ex){
+           ex.getMessage();
+       }
+       
+       //RemoverCliente
+       try{
+           Fachada.getInstance().removerClienteJ(clientej.getCnpj());
+       }catch(ClienteNaoEncontradoException ex){
+           ex.getMessage();
+       }
+    
+     //Produto   
+       //CadastrarProduto
+       try{
+           Fachada.getInstance().cadastrarProduto(produto00);
+           Fachada.getInstance().cadastrarProduto(produto01);
+           Fachada.getInstance().cadastrarProduto(produto02);
+           Fachada.getInstance().cadastrarProduto(produto03);
        }catch (ProdutoJaCadastradoException ex){
            ex.getMessage();
        }
        
-       
-/*
+       //ConsultarProduto
        try{
-           fachada.cadastrarCompra(compra);
+           Fachada.getInstance().consultarProduto(produto01.getCod());
+       }catch(ProdutoNaoEncontradoException ex){
+           ex.getMessage();
        }
-  */     
+      
+       //AtualizarProduto
+       try{
+           Fachada.getInstance().atualizarProduto(produto02);
+       }catch(ProdutoNaoEncontradoException ex){
+           ex.getMessage();
+       }
        
-    }
+       //RemoverProduto
+       try{
+           Fachada.getInstance().removerProduto(produto03.getCod());
+       }catch(ProdutoNaoEncontradoException ex){
+           ex.getMessage();
+       }
+       
+       //Compra
+       
+       //CadastrarCompra
+       try{
+           Fachada.getInstance().cadastrarCompra(compra);
+           try{
+               Produto aux = new Produto();
+               for(int i=0;i<compra.getProduto().length;i++){
+                    if(Fachada.getInstance().consultarProduto(compra.getProduto()[i].getCod()) != null){
+                        aux = Fachada.getInstance().consultarProduto(compra.getProduto()[i].getCod());
+                        aux.setQtd(aux.getQtd() + compra.getProduto()[i].getQtd());
+                        Fachada.getInstance().atualizarProduto(aux);
+                    }else{
+                        try{
+                            Fachada.getInstance().cadastrarProduto(compra.getProduto()[i]);
+                        }catch(ProdutoJaCadastradoException ex){
+                            ex.getMessage();
+                        }
+                    }
+               }
+               
+           }catch(ProdutoNaoEncontradoException ex){
+               ex.getMessage();
+           }
+       }catch(NfJaCadastradaException ex){
+           ex.getMessage();
+       }
+       
+       //ConsultarCompra
+       try{
+           Fachada.getInstance().consultarCompra(compra.getNf());
+       }catch(NfNaoEncontradaException ex){
+           ex.getMessage();
+       }
+       
+       //AtualizarCompra
+       try{
+           Fachada.getInstance().atualizarCompra(compra);
+       }catch(NfNaoEncontradaException ex){
+           ex.getMessage();
+       }
+       
+       //RemoverCompra
+       try{
+           Fachada.getInstance().removerCompra(compra.getNf());
+           try{
+               Produto aux = new Produto();
+               for(int i=0;i<compra.getProduto().length;i++){
+                    if(Fachada.getInstance().consultarProduto(compra.getProduto()[i].getCod()) != null){
+                        aux = Fachada.getInstance().consultarProduto(compra.getProduto()[i].getCod());
+                        if(aux.getQtd() >= compra.getProduto()[i].getQtd()){
+                            aux.setQtd(aux.getQtd() - compra.getProduto()[i].getQtd());
+                            Fachada.getInstance().atualizarProduto(aux);
+                        }else{
+                            System.out.print("");
+                        }
+                    }else{
+                        try{
+                            Fachada.getInstance().cadastrarProduto(compra.getProduto()[i]);
+                        }catch(ProdutoJaCadastradoException ex){
+                            ex.getMessage();
+                        }
+                    }
+               }
+           }catch(ProdutoNaoEncontradoException ex){
+               ex.getMessage();
+           }
+       }catch(NfNaoEncontradaException ex){
+           ex.getMessage();
+       }
+       
+       
+    //Venda
+    //CadastrarVenda
+     try{
+           Fachada.getInstance().cadastrarVenda(venda);
+           try{
+               Produto aux = new Produto();
+               for(int i=0;i<venda.getProduto().length;i++){
+                    if(Fachada.getInstance().consultarProduto(venda.getProduto()[i].getCod()) != null){
+                        aux = Fachada.getInstance().consultarProduto(venda.getProduto()[i].getCod());
+                        if(aux.getQtd() >= venda.getProduto()[i].getQtd()){
+                            aux.setQtd(aux.getQtd() - venda.getProduto()[i].getQtd());
+                            Fachada.getInstance().atualizarProduto(aux);
+                        }else{
+                            System.out.print("");
+                        }
+                    }else{
+                        try{
+                            Fachada.getInstance().cadastrarProduto(venda.getProduto()[i]);
+                        }catch(ProdutoJaCadastradoException ex){
+                            ex.getMessage();
+                        }
+                    }
+               }
+           }catch(ProdutoNaoEncontradoException ex){
+               ex.getMessage();
+           }
+       }catch(NfJaCadastradaException ex){
+           ex.getMessage();
+       }
     
+    //ConsultarVenda 
+    try{
+        Fachada.getInstance().consultarVenda(venda.getNf());
+       }catch(NfNaoEncontradaException ex){
+           ex.getMessage();
+       } 
+     
+    //AtualizarVenda 
+     try{
+        Fachada.getInstance().atualizarVenda(venda);
+        }catch(NfNaoEncontradaException ex){
+           ex.getMessage();
+       }
+     
+    //RemoverVenda
+       try{
+           Fachada.getInstance().cadastrarVenda(venda);
+           try{
+               Produto aux = new Produto();
+               for(int i=0;i<venda.getProduto().length;i++){
+                    if(Fachada.getInstance().consultarProduto(venda.getProduto()[i].getCod()) != null){
+                        aux = Fachada.getInstance().consultarProduto(venda.getProduto()[i].getCod());
+                        aux.setQtd(aux.getQtd() + venda.getProduto()[i].getQtd());
+                        Fachada.getInstance().atualizarProduto(aux);
+                    }else{
+                        try{
+                            Fachada.getInstance().cadastrarProduto(venda.getProduto()[i]);
+                        }catch(ProdutoJaCadastradoException ex){
+                            ex.getMessage();
+                        }
+                    }
+               }
+           }catch(ProdutoNaoEncontradoException ex){
+               ex.getMessage();
+           }
+       }catch(NfJaCadastradaException ex){
+           ex.getMessage();
+       } 
+     
+     
+     
+  //Obrigatórias   
+    }
 }

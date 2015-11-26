@@ -16,6 +16,7 @@ public class Cliente {
     private String   fone;
     private String   email;
     private String   endereco;
+    private String enderecoa;
     
     //Construtor de Cliente sem parâmetros
     public Cliente(){
@@ -25,6 +26,7 @@ public class Cliente {
         this.fone     = null;
         this.email    = null;
         this.endereco = null;
+        this.enderecoa = null;
     }
     //Construtor de Cliente com todos os parâmetros
     public Cliente(String nome, String ddd, String fone, String email, String endereco){
@@ -84,4 +86,5 @@ public class Cliente {
     public void setEndereco(String endereco){
         this.endereco = endereco;
     }
+    
 }

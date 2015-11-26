@@ -47,7 +47,7 @@ public class RepositorioProdutoArray implements IRepositorioProduto{
     public void excluir(String cod){
         Produto aux[] = new Produto[100];
         int j=0;
-        for(int i=0;i<this.indice;i++){
+        for(int i=0;i<this.indice-1;i++){
             if(!this.produto[i].getCod().equals(cod)){
                 aux[j] = this.produto[i];
                 j++;
@@ -58,8 +58,8 @@ public class RepositorioProdutoArray implements IRepositorioProduto{
     
     @Override
     public Produto consultar(String cod) throws ProdutoNaoEncontradoException{
-        for(int i=0;i<this.indice;i++){
-            if(this.produto[i].getDescricao().equals(cod)){
+        for(int i=0;i<this.indice-1;i++){
+            if(this.produto[i].getCod().equals(cod)){
                 return this.produto[i];
             }
         }
@@ -68,7 +68,7 @@ public class RepositorioProdutoArray implements IRepositorioProduto{
     
     @Override
     public void atualizar(Produto produto){
-        for(int i=0; i<this.indice;i++){
+        for(int i=0; i<this.indice-1;i++){
             if(this.produto[i].getCod().equals(produto.getCod())){
               this.produto[i] = produto;
             }
@@ -77,7 +77,7 @@ public class RepositorioProdutoArray implements IRepositorioProduto{
     
     @Override
     public boolean jaExiste(String cod){
-        for(int i=0;i<this.indice;i++){
+        for(int i=0;i<this.indice-1;i++){
             if(this.produto[i].getCod().equals(cod)){
                 return true;
             }
