@@ -52,7 +52,7 @@ public class RepositorioVendaArray implements IRepositorioVenda{
     public void excluir(String nf){
         Venda aux[] = new Venda[1000];
         int j=0;
-        for(int i=0; i<this.indice;i++){
+        for(int i=0; i<this.indice-1;i++){
            if(!this.vendas[i].getNf().equals(nf)){
                aux[j] = this.vendas[i];
                j++;
@@ -63,7 +63,7 @@ public class RepositorioVendaArray implements IRepositorioVenda{
     
     @Override
     public Venda consultar(String nf) throws NfNaoEncontradaException{
-        for(int i=0;i<this.indice;i++){
+        for(int i=0;i<this.indice-1;i++){
             if(this.vendas[i].getNf().equals(nf)){
                 return this.vendas[i];
             }
@@ -73,7 +73,7 @@ public class RepositorioVendaArray implements IRepositorioVenda{
     
     @Override
     public void atualizar(Venda venda){
-        for(int i=0; i<this.indice;i++){
+        for(int i=0; i<this.indice-1;i++){
             if(this.vendas[i].getNf().equals(venda.getNf())){
                 this.vendas[i] = venda;
             }
@@ -82,7 +82,7 @@ public class RepositorioVendaArray implements IRepositorioVenda{
     
     @Override
     public boolean jaExiste(String nf){
-         for(int i=0;i<this.indice;i++){
+         for(int i=0;i<this.indice-1;i++){
             if(this.vendas[i].getNf().equals(nf)){
                 return true;
             }

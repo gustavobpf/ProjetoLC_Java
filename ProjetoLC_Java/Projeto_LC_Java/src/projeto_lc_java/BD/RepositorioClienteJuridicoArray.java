@@ -50,7 +50,7 @@ public class RepositorioClienteJuridicoArray implements IRepositorioClienteJ{
     public void excluir(String cnpj){
         ClienteJuridico aux[] = new ClienteJuridico[1000];
         int j=0;
-        for(int i=0; i<this.indice;i++){
+        for(int i=0; i<this.indice-1;i++){
            if(this.clientes[i].getCnpj() != cnpj){
                aux[j] = this.clientes[i];
                j++;
@@ -62,7 +62,7 @@ public class RepositorioClienteJuridicoArray implements IRepositorioClienteJ{
     @Override
     public ClienteJuridico consultar(String cnpj){
         ClienteJuridico aux = new ClienteJuridico();
-        for(int i=0;i<this.indice;i++){
+        for(int i=0;i<this.indice-1;i++){
             if(this.clientes[i].getCnpj().equals(cnpj)){
                 aux = this.clientes[i];
             }
@@ -72,7 +72,7 @@ public class RepositorioClienteJuridicoArray implements IRepositorioClienteJ{
     
     @Override
     public void atualizar(ClienteJuridico cliente){
-        for(int i=0; i<this.indice;i++){
+        for(int i=0; i<this.indice-1;i++){
             if(this.clientes[i].getCnpj().equals(cliente.getCnpj())){
                 this.clientes[i] = cliente;
             }
@@ -81,7 +81,7 @@ public class RepositorioClienteJuridicoArray implements IRepositorioClienteJ{
 
     @Override
     public boolean jaExiste(String cnpj) {
-        for(int i=0;i<this.indice;i++){
+        for(int i=0;i<this.indice-1;i++){
             if(this.clientes[i].getCnpj().equals(cnpj)){
                 return true;
             }

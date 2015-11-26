@@ -55,7 +55,7 @@ public class RepositorioClienteFisicoArray implements IRepositorioClienteF{
     public void excluir(String cpf){
         ClienteFisico aux[] = new ClienteFisico[1000];
         int j=0;
-        for(int i=0; i<this.indice;i++){
+        for(int i=0; i<this.indice-1;i++){
            if(!this.clientes[i].getCpf().equals(cpf)){
                aux[j] = this.clientes[i];
                j++;
@@ -66,7 +66,7 @@ public class RepositorioClienteFisicoArray implements IRepositorioClienteF{
     
     @Override
     public ClienteFisico consultar(String cpf) throws ClienteNaoEncontradoException{
-        for(int i=0;i<this.indice;i++){
+        for(int i=0;i<this.indice-1;i++){
             if(this.clientes[i].getCpf().equals(cpf)){
                 return this.clientes[i];
             }
@@ -76,7 +76,7 @@ public class RepositorioClienteFisicoArray implements IRepositorioClienteF{
     
     @Override
     public void atualizar(ClienteFisico cliente){
-        for(int i=0; i<this.indice;i++){
+        for(int i=0; i<this.indice-1;i++){
             if(this.clientes[i].getCpf().equals(cliente.getCpf())){
                 this.clientes[i] = cliente;
             }
@@ -85,7 +85,7 @@ public class RepositorioClienteFisicoArray implements IRepositorioClienteF{
     
     
      public boolean jaExiste(String cpf){
-        for(int i=0;i<this.indice;i++){
+        for(int i=0;i<this.indice-1;i++){
             if(!this.clientes[i].getCpf().equals(cpf)){
                 return false;
             }
